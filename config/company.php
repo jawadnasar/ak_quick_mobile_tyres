@@ -6,8 +6,8 @@ return [
     'tagline' => 'Mobile tyre fitting that comes to you',
     'description' => '24/7 AK Quick Mobile Tyres provides emergency mobile tyre fitting, puncture repairs and roadside tyre assistance across the UK. Available day and night. We come to you at the roadside, at home or at work.',
     'url' => env('APP_URL', 'https://www.akquickmobiletyres.co.uk'),
-    'email' => env('COMPANY_EMAIL'), // set in .env when available; do not invent
-    'quote_email' => env('QUOTE_TO_EMAIL', env('COMPANY_EMAIL')), // quote form recipient
+    'email' => env('COMPANY_EMAIL', 'ahmadkhan01201233@gmail.com'),
+    'quote_email' => env('QUOTE_TO_EMAIL', env('COMPANY_EMAIL', 'ahmadkhan01201233@gmail.com')),
     'phone' => '07405 726167',
     'phone_link' => '447405726167',
     'whatsapp' => env('COMPANY_WHATSAPP'), // optional

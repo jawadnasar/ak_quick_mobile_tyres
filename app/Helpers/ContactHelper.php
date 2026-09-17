@@ -93,12 +93,12 @@ class ContactHelper
             'message' => $validated['message'],
         ];
 
-        $to = config('company.quote_email')
+        $ownerEmail = config('company.quote_email')
             ?: config('company.email')
             ?: config('mail.from.address');
 
-        if (empty($to)) {
-            Log::error('Quote request could not be sent: no recipient email configured.');
+        if (empty($ownerEmail)) {
+            Log::error('Quote request could not be sent: no owner email configured.');
 
             if ($request->expectsJson()) {
                 return response()->json([
@@ -114,7 +114,11 @@ class ContactHelper
         }
 
         try {
-            Mail::to($to)->send(new QuoteRequestMail($payload));
+            // Owner notification (all quote details)
+            Mail::to($ownerEmail)->send(new QuoteRequestMail($payload, forCustomer: false));
+
+            // Customer confirmation (same quote details)
+            Mail::to($payload['email'])->send(new QuoteRequestMail($payload, forCustomer: true));
 
             if ($request->expectsJson()) {
                 return response()->json([
@@ -124,7 +128,7 @@ class ContactHelper
             }
 
             return back()
-                ->with('quote_success', 'Your quote request has been sent. We will get back to you soon.')
+                ->with('quote_success', 'Your quote request has been sent. A confirmation email has also been sent to you.')
                 ->withFragment('quote');
         } catch (\Throwable $e) {
             Log::error('Quote request mail failed: '.$e->getMessage(), [

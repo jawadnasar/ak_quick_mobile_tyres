@@ -52,9 +52,9 @@ class HomeHelper
             'faqs' => $faqs,
             'jobImages' => self::jobImages(),
             'process' => [
-                ['step' => '01', 'title' => 'Call Us', 'description' => 'Tell us where you are and what tyre problem you are dealing with.'],
-                ['step' => '02', 'title' => 'We Come To You', 'description' => 'Our mobile tyre team travels directly to your location with the right kit.'],
-                ['step' => '03', 'title' => 'We Fix the Problem', 'description' => 'We repair or replace the tyre on the spot wherever possible.'],
+                ['step' => '01', 'title' => 'Initial Contact', 'description' => 'Call us and tell us where you are and what problem you are dealing with.'],
+                ['step' => '02', 'title' => 'We Come To You', 'description' => 'Our mobile team travels directly to your location with the right kit.'],
+                ['step' => '03', 'title' => 'We Fix the Problem', 'description' => 'We repair or replace on the spot wherever possible.'],
                 ['step' => '04', 'title' => 'Back on the Road', 'description' => 'Get back on your journey safely and quickly, day or night.'],
             ],
         ]);

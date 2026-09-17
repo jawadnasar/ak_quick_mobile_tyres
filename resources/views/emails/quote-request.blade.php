@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quote request</title>
+    <title>{{ $forCustomer ? 'Quote confirmation' : 'Quote request' }}</title>
 </head>
 <body style="margin:0;padding:0;background:#f3f6f9;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0B0B0B;">
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f3f6f9;padding:32px 16px;">
@@ -13,18 +13,29 @@
                     <tr>
                         <td style="background:#314968;padding:28px 32px;">
                             <p style="margin:0;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c9d5e3;font-weight:600;">
-                                New website enquiry
+                                {{ $forCustomer ? 'Quote confirmation' : 'New website enquiry' }}
                             </p>
                             <h1 style="margin:10px 0 0;font-size:24px;line-height:1.3;color:#ffffff;font-weight:700;">
-                                Quote request received
+                                @if($forCustomer)
+                                    We received your quote request
+                                @else
+                                    Quote request received
+                                @endif
                             </h1>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding:28px 32px 8px;">
                             <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#555551;">
-                                A customer submitted a quote request on
-                                <strong style="color:#0B0B0B;">{{ $company['name'] }}</strong>.
+                                @if($forCustomer)
+                                    Hi {{ $quote['name'] }}, thank you for contacting
+                                    <strong style="color:#0B0B0B;">{{ $company['name'] }}</strong>.
+                                    Here is a copy of the quote details you submitted. We will get back to you soon.
+                                @else
+                                    A customer submitted a quote request on
+                                    <strong style="color:#0B0B0B;">{{ $company['name'] }}</strong>.
+                                    Full details are below.
+                                @endif
                             </p>
 
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
@@ -59,9 +70,15 @@
                         <td style="padding:8px 32px 28px;">
                             <div style="margin-top:12px;padding:16px 18px;background:#f3f6f9;border-left:4px solid #314968;border-radius:0 8px 8px 0;">
                                 <p style="margin:0;font-size:13px;line-height:1.5;color:#555551;">
-                                    Reply directly to this email or call
-                                    <strong style="color:#0B0B0B;">{{ $quote['phone'] }}</strong>
-                                    to follow up.
+                                    @if($forCustomer)
+                                        Need urgent help? Call us anytime on
+                                        <strong style="color:#0B0B0B;">{{ $company['phone'] }}</strong>
+                                        ({{ $company['availability'] }}).
+                                    @else
+                                        Reply directly to this email or call
+                                        <strong style="color:#0B0B0B;">{{ $quote['phone'] }}</strong>
+                                        to follow up.
+                                    @endif
                                 </p>
                             </div>
                         </td>
@@ -69,7 +86,8 @@
                     <tr>
                         <td style="background:#0B0B0B;padding:18px 32px;text-align:center;">
                             <p style="margin:0;font-size:12px;color:#b0b0ad;">
-                                {{ $company['name'] }} · Quote request notification
+                                {{ $company['name'] }}
+                                · {{ $forCustomer ? 'Quote confirmation' : 'Quote request notification' }}
                             </p>
                         </td>
                     </tr>

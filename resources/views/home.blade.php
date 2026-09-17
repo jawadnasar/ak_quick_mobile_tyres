@@ -144,11 +144,27 @@
             title="How it works"
             subtitle="Emergency tyre help made simple: four clear steps from call to back on the road."
         />
-        <ol class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+        <figure class="mt-10 overflow-hidden rounded-xl border border-brand-100 bg-white shadow-soft">
+            <div class="overflow-x-auto">
+                <img src="{{ asset('front-theme/assets/img/steps.jpg') }}"
+                     alt="How it works: initial contact, we come to you, we fix the problem, then back on the road"
+                     class="h-auto w-full min-w-[40rem] object-contain object-top sm:min-w-0"
+                     width="1400"
+                     height="700"
+                     loading="lazy"
+                     decoding="async">
+            </div>
+            <figcaption class="sr-only">
+                Four steps: Initial Contact, We Come To You, We Fix the Problem, Back on the Road.
+            </figcaption>
+        </figure>
+
+        <ol class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             @foreach($process as $step)
-            <li class="relative border-t-2 border-brand-500 bg-white p-6 shadow-soft">
-                <span class="font-display text-3xl font-extrabold text-brand-500">{{ $step['step'] }}</span>
-                <h3 class="mt-4 font-display text-lg font-bold tracking-tight text-ink-950">{{ $step['title'] }}</h3>
+            <li class="rounded-lg border border-brand-100 bg-white p-4 shadow-soft">
+                <span class="font-display text-sm font-bold uppercase tracking-wider text-brand-500">Step {{ $step['step'] }}</span>
+                <h3 class="mt-1 font-display text-base font-bold tracking-tight text-ink-950">{{ $step['title'] }}</h3>
                 <p class="mt-2 text-sm leading-relaxed text-ink-500">{{ $step['description'] }}</p>
             </li>
             @endforeach

@@ -15,15 +15,24 @@ class QuoteRequestMail extends Mailable
 
     /**
      * @param  array{name: string, email: string, phone: string, title: string, message: string}  $data
+     * @param  bool  $forCustomer  Customer confirmation vs owner notification
      */
-    public function __construct(public array $data)
-    {
+    public function __construct(
+        public array $data,
+        public bool $forCustomer = false,
+    ) {
     }
 
     public function envelope(): Envelope
     {
+        if ($this->forCustomer) {
+            return new Envelope(
+                subject: 'We received your quote request: '.$this->data['title'],
+            );
+        }
+
         return new Envelope(
-            subject: 'Quote request: ' . $this->data['title'],
+            subject: 'New quote request: '.$this->data['title'],
             replyTo: [
                 new Address($this->data['email'], $this->data['name']),
             ],
@@ -38,6 +47,7 @@ class QuoteRequestMail extends Mailable
             with: [
                 'quote' => $this->data,
                 'company' => config('company'),
+                'forCustomer' => $this->forCustomer,
             ],
         );
     }
