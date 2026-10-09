@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="grid gap-5 sm:grid-cols-2">
+                <div style="display: none;" class="grid gap-5 sm:grid-cols-2">
                     <div>
                         <label for="{{ $id }}_email" class="block text-sm font-semibold text-ink-800">Email <span class="text-brand-500">*</span></label>
                         <input type="email" name="email" id="{{ $id }}_email" value="{{ old('email') }}" required maxlength="255"
@@ -74,7 +74,7 @@
                                class="{{ $fieldClass }} @error('title') border-red-400 focus:border-red-400 focus:ring-red-400 @enderror"
                                placeholder="e.g. Puncture repair, new tyre">
                         @error('title')
-                        <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-1.5 text-sm text-red-600">You have a new quote request{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                               class="{{ $fieldClass }} @error('message') border-red-400 focus:border-red-400 focus:ring-red-400 @enderror"
                               placeholder="Location, vehicle type, tyre size if known, and what you need…">{{ old('message') }}</textarea>
                     @error('message')
-                    <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
+                    <p class="mt-1.5 text-sm text-red-600">You have a new quote request{{ $message }}</p>
                     @enderror
                 </div>
 
