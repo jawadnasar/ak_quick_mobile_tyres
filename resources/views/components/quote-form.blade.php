@@ -79,7 +79,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div style="display: none;" >
                     <label for="{{ $id }}_message" class="block text-sm font-semibold text-ink-800">Message <span class="text-brand-500">*</span></label>
                     <textarea name="message" id="{{ $id }}_message" rows="5" required maxlength="2000"
                               class="{{ $fieldClass }} @error('message') border-red-400 focus:border-red-400 focus:ring-red-400 @enderror"
