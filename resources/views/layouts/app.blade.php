@@ -60,6 +60,20 @@
     </script>
     <!-- End Google tag (gtag.js) -->
 
+    <!-- Google tag For ADS (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18356768201"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-18356768201');
+    </script>
+    <!-- End Google tag (gtag.js) -->
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
 </head>
