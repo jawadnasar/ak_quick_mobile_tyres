@@ -21,4 +21,9 @@ class ContactController extends Controller
     {
         return ContactHelper::add($request);
     }
+
+    public function captcha(string $token)
+    {
+        return ContactHelper::captcha($token);
+    }
 }

@@ -28,7 +28,12 @@ Route::get('/portfolio/{project}', [PortfolioController::class, 'show'])->name('
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/request-a-quote', [ContactController::class, 'quote'])->name('quote');
-Route::post('/contact/add', [ContactController::class, 'add'])->name('contact.add');
+Route::get('/contact/captcha/{token}', [ContactController::class, 'captcha'])
+    ->where('token', '[a-f0-9]{32}')
+    ->name('contact.captcha');
+Route::post('/contact/add', [ContactController::class, 'add'])
+    ->middleware('throttle:10,1')
+    ->name('contact.add');
 
 Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('privacy-policy');
 Route::get('/terms-and-conditions', [LegalController::class, 'terms'])->name('terms');

@@ -31,11 +31,15 @@ class QuoteRequestMail extends Mailable
             );
         }
 
+        $replyTo = [];
+
+        if (! empty($this->data['email']) && filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
+            $replyTo[] = new Address($this->data['email'], $this->data['name']);
+        }
+
         return new Envelope(
             subject: 'New quote request: '.$this->data['title'],
-            replyTo: [
-                new Address($this->data['email'], $this->data['name']),
-            ],
+            replyTo: $replyTo,
         );
     }
 

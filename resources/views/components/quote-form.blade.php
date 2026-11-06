@@ -5,6 +5,7 @@
 
 @php
     $fieldClass = 'input-field mt-1.5';
+    $captcha = \App\Helpers\QuoteFormGuard::issue();
 @endphp
 
 <section id="{{ $id }}" @class(['scroll-mt-24', $compact ? '' : 'section-padding bg-ink-50'])>
@@ -32,8 +33,14 @@
             </div>
             @endif
 
-            <form action="{{ route('contact.add') }}" method="POST" class="mt-8 space-y-5" novalidate>
+            <form action="{{ route('contact.add') }}" method="POST" class="mt-8 space-y-5" style="position:relative;" novalidate>
                 @csrf
+                <input type="hidden" name="form_token" value="{{ $captcha['token'] }}">
+
+                <div aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+                    <label for="{{ $id }}_extra_field">Website</label>
+                    <input type="text" name="extra_field" id="{{ $id }}_extra_field" tabindex="-1" autocomplete="off" value="">
+                </div>
 
                 <div class="grid gap-5 sm:grid-cols-2">
                     <div>
@@ -60,7 +67,7 @@
                 <div style="display: none;" class="grid gap-5 sm:grid-cols-2">
                     <div>
                         <label for="{{ $id }}_email" class="block text-sm font-semibold text-ink-800">Email <span class="text-brand-500">*</span></label>
-                        <input type="email" name="email" id="{{ $id }}_email" value="{{ old('email') }}" required maxlength="255"
+                        <input type="email" name="email" id="{{ $id }}_email" value="{{ old('email') }}" maxlength="255"
                                class="{{ $fieldClass }} @error('email') border-red-400 focus:border-red-400 focus:ring-red-400 @enderror"
                                placeholder="you@example.com" autocomplete="email">
                         @error('email')
@@ -70,7 +77,7 @@
 
                     <div>
                         <label for="{{ $id }}_title" class="block text-sm font-semibold text-ink-800">Subject <span class="text-brand-500">*</span></label>
-                        <input type="text" name="title" id="{{ $id }}_title" value="{{ old('title') }}" required maxlength="255"
+                        <input type="text" name="title" id="{{ $id }}_title" value="{{ old('title') }}" maxlength="255"
                                class="{{ $fieldClass }} @error('title') border-red-400 focus:border-red-400 focus:ring-red-400 @enderror"
                                placeholder="e.g. Puncture repair, new tyre">
                         @error('title')
@@ -81,11 +88,34 @@
 
                 <div style="display: none;" >
                     <label for="{{ $id }}_message" class="block text-sm font-semibold text-ink-800">Message <span class="text-brand-500">*</span></label>
-                    <textarea name="message" id="{{ $id }}_message" rows="5" required maxlength="2000"
+                    <textarea name="message" id="{{ $id }}_message" rows="5" maxlength="2000"
                               class="{{ $fieldClass }} @error('message') border-red-400 focus:border-red-400 focus:ring-red-400 @enderror"
                               placeholder="Location, vehicle type, tyre size if known, and what you need…">{{ old('message') }}</textarea>
                     @error('message')
                     <p class="mt-1.5 text-sm text-red-600">You have a new quote request{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="{{ $id }}_captcha" class="block text-sm font-semibold text-ink-800">Security code <span class="text-brand-500">*</span></label>
+                    @if($captcha['mode'] === 'image')
+                    <div class="mt-1.5" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+                        <img src="{{ route('contact.captcha', ['token' => $captcha['token']]) }}" alt="Security code" width="180" height="56"
+                             style="height:56px;width:180px;border-radius:0.5rem;border:1px solid #c9d5e3;background:#f3f6f9;">
+                        <input type="text" name="captcha" id="{{ $id }}_captcha" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required maxlength="8"
+                               class="input-field" style="margin-top:0;max-width:9rem;" placeholder="Enter code">
+                    </div>
+                    <p class="mt-1.5 text-xs text-ink-400">
+                        Type the characters from the image.
+                        <a href="{{ request()->fullUrlWithQuery(['code' => time()]) }}#{{ $id }}" class="font-semibold text-brand-500 hover:underline">Get a new code</a>
+                    </p>
+                    @else
+                    <p class="mt-1 text-sm text-ink-500">What is {{ $captcha['question'] }}?</p>
+                    <input type="text" name="captcha" id="{{ $id }}_captcha" inputmode="numeric" autocomplete="off" required maxlength="8"
+                           class="{{ $fieldClass }}" style="max-width:9rem;" placeholder="Answer">
+                    @endif
+                    @error('captcha')
+                    <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
