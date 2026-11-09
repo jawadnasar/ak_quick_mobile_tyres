@@ -40,10 +40,12 @@ class ContactHelper
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255'],
             'phone' => ['required', 'string', 'max:40'],
-            'title' => ['required', 'string', 'max:255'],
-            'message' => ['required', 'string', 'max:2000'],
+            'title' => ['nullable', 'string', 'max:255'],
+            'message' => ['nullable', 'string', 'max:2000'],
+            'captcha' => ['required', 'string', 'max:8'],
+            'form_token' => ['required', 'string', 'size:32'],
         ];
     }
 
@@ -54,13 +56,14 @@ class ContactHelper
             'name.max' => 'Name cannot exceed 255 characters.',
             'phone.required' => 'Please enter your phone number.',
             'phone.max' => 'Phone cannot exceed 40 characters.',
-            'title.required' => 'Please enter a subject.',
             'title.max' => 'Subject cannot exceed 255 characters.',
-            'message.required' => 'Please tell us what you need.',
             'message.max' => 'Message cannot exceed 2000 characters.',
-            'email.required' => 'Please enter your email address.',
             'email.email' => 'Please enter a valid email address.',
             'email.max' => 'Email cannot exceed 255 characters.',
+            'captcha.required' => 'Please enter the security code.',
+            'captcha.max' => 'Security code cannot exceed 8 characters.',
+            'form_token.required' => 'The security code expired. Refresh the page and try again.',
+            'form_token.size' => 'The security code expired. Refresh the page and try again.',
         ];
     }
 
@@ -83,14 +86,35 @@ class ContactHelper
                 ->withFragment('quote');
         }
 
+        $captchaError = QuoteFormGuard::verify($request);
+
+        if ($captchaError !== null) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $captchaError,
+                    'errors' => ['captcha' => [$captchaError]],
+                ], 422);
+            }
+
+            return back()
+                ->withErrors(['captcha' => $captchaError])
+                ->withInput($request->except(['captcha', 'extra_field']))
+                ->withFragment('quote');
+        }
+
         $validated = $validator->validated();
+
+        $email = $validated['email'] ?? null;
+        $title = $validated['title'] ?? null;
+        $message = $validated['message'] ?? null;
 
         $payload = [
             'name' => $validated['name'],
-            'email' => $validated['email'],
+            'email' => $email,
             'phone' => $validated['phone'],
-            'title' => $validated['title'],
-            'message' => $validated['message'],
+            'title' => $title ?: 'Website enquiry',
+            'message' => $message ?: 'Please call the customer. They sent this request from the website form.',
         ];
 
         $ownerEmail = config('company.quote_email')
@@ -109,26 +133,30 @@ class ContactHelper
 
             return back()
                 ->with('quote_error', 'Unable to send your request right now. Please call us instead.')
-                ->withInput()
+                ->withInput($request->except(['captcha', 'extra_field']))
                 ->withFragment('quote');
         }
 
         try {
-            // Owner notification (all quote details)
             Mail::to($ownerEmail)->send(new QuoteRequestMail($payload, forCustomer: false));
 
-            // Customer confirmation (same quote details)
-            Mail::to($payload['email'])->send(new QuoteRequestMail($payload, forCustomer: true));
+            if (! empty($payload['email'])) {
+                Mail::to($payload['email'])->send(new QuoteRequestMail($payload, forCustomer: true));
+            }
+
+            $success = empty($payload['email'])
+                ? 'Your quote request has been sent. We will call you back soon.'
+                : 'Your quote request has been sent. A confirmation email has also been sent to you.';
 
             if ($request->expectsJson()) {
                 return response()->json([
                     'status' => 'success',
-                    'msg' => 'Your quote request has been sent. We will get back to you soon.',
+                    'msg' => $success,
                 ]);
             }
 
             return back()
-                ->with('quote_success', 'Your quote request has been sent. A confirmation email has also been sent to you.')
+                ->with('quote_success', $success)
                 ->withFragment('quote');
         } catch (\Throwable $e) {
             Log::error('Quote request mail failed: '.$e->getMessage(), [
@@ -144,7 +172,7 @@ class ContactHelper
 
             return back()
                 ->with('quote_error', 'Something went wrong. Please try again or call us.')
-                ->withInput()
+                ->withInput($request->except(['captcha', 'extra_field']))
                 ->withFragment('quote');
         }
     }

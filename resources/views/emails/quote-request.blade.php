@@ -52,7 +52,11 @@
                                 <tr>
                                     <td style="padding:12px 0;border-bottom:1px solid #e4eaf1;font-size:13px;color:#6b6b67;vertical-align:top;">Email</td>
                                     <td style="padding:12px 0;border-bottom:1px solid #e4eaf1;font-size:15px;color:#0B0B0B;font-weight:600;">
+                                        @if(!empty($quote['email']))
                                         <a href="mailto:{{ $quote['email'] }}" style="color:#314968;text-decoration:none;">{{ $quote['email'] }}</a>
+                                        @else
+                                        Not provided
+                                        @endif
                                     </td>
                                 </tr>
                                 <tr>

@@ -14,7 +14,7 @@ class QuoteRequestMail extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * @param  array{name: string, email: string, phone: string, title: string, message: string}  $data
+     * @param  array{name: string, email: ?string, phone: string, title: string, message: string}  $data
      * @param  bool  $forCustomer  Customer confirmation vs owner notification
      */
     public function __construct(
@@ -25,17 +25,20 @@ class QuoteRequestMail extends Mailable
 
     public function envelope(): Envelope
     {
-        if ($this->forCustomer) {
-            return new Envelope(
-                subject: 'We received your quote request: '.$this->data['title'],
-            );
+        $subject = $this->forCustomer
+            ? 'We received your quote request: '.$this->data['title']
+            : 'New quote request: '.$this->data['title'];
+
+        $replyTo = [];
+        $email = $this->data['email'] ?? '';
+
+        if (! $this->forCustomer && is_string($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $replyTo[] = new Address($email, $this->data['name'] ?: 'Customer');
         }
 
         return new Envelope(
-            subject: 'New quote request: '.$this->data['title'],
-            replyTo: [
-                new Address($this->data['email'], $this->data['name']),
-            ],
+            subject: $subject,
+            replyTo: $replyTo,
         );
     }
 

@@ -28,6 +28,10 @@ Route::get('/portfolio/{project}', [PortfolioController::class, 'show'])->name('
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/request-a-quote', [ContactController::class, 'quote'])->name('quote');
+Route::get('/contact/captcha/{token}', [ContactController::class, 'captcha'])
+    ->where('token', '[a-f0-9]{32}')
+    ->name('contact.captcha');
+Route::post('/contact/captcha/refresh', [ContactController::class, 'refreshCaptcha'])->name('contact.captcha.refresh');
 Route::post('/contact/add', [ContactController::class, 'add'])->name('contact.add');
 
 Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('privacy-policy');

@@ -12,7 +12,7 @@ A customer submitted a quote request. Full details are below.
 
 Name: {{ $quote['name'] }}
 Phone: {{ $quote['phone'] }}
-Email: {{ $quote['email'] }}
+Email: {{ $quote['email'] ?: 'Not provided' }}
 Subject: {{ $quote['title'] }}
 
 Message:
