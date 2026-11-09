@@ -36,8 +36,18 @@ class QuoteRequestMail extends Mailable
             $replyTo[] = new Address($email, $this->data['name'] ?: 'Customer');
         }
 
+        $replyTo = [];
+
+        if (! empty($this->data['email']) && filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
+            $replyTo[] = new Address($this->data['email'], $this->data['name']);
+        }
+
         return new Envelope(
+<<<<<<< HEAD
             subject: $subject,
+=======
+            subject: 'New quote request: '.$this->data['title'],
+>>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
             replyTo: $replyTo,
         );
     }

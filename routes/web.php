@@ -31,8 +31,14 @@ Route::get('/request-a-quote', [ContactController::class, 'quote'])->name('quote
 Route::get('/contact/captcha/{token}', [ContactController::class, 'captcha'])
     ->where('token', '[a-f0-9]{32}')
     ->name('contact.captcha');
+<<<<<<< HEAD
 Route::post('/contact/captcha/refresh', [ContactController::class, 'refreshCaptcha'])->name('contact.captcha.refresh');
 Route::post('/contact/add', [ContactController::class, 'add'])->name('contact.add');
+=======
+Route::post('/contact/add', [ContactController::class, 'add'])
+    ->middleware('throttle:10,1')
+    ->name('contact.add');
+>>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
 
 Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('privacy-policy');
 Route::get('/terms-and-conditions', [LegalController::class, 'terms'])->name('terms');
