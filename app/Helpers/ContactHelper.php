@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Response;
 
 class ContactHelper
 {
@@ -42,13 +41,6 @@ class ContactHelper
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
-<<<<<<< HEAD
-            'phone' => ['required', 'string', 'max:40'],
-            'title' => ['nullable', 'string', 'max:255'],
-            'message' => ['nullable', 'string', 'max:2000'],
-            'captcha' => ['required', 'string', 'max:8'],
-            'form_token' => ['required', 'string', 'size:32'],
-=======
             'phone' => ['required', 'string', 'max:40', function (string $attribute, mixed $value, \Closure $fail) {
                 $digits = preg_replace('/\D+/', '', (string) $value) ?? '';
 
@@ -58,7 +50,8 @@ class ContactHelper
             }],
             'title' => ['nullable', 'string', 'max:255'],
             'message' => ['nullable', 'string', 'max:2000'],
->>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
+            'captcha' => ['required', 'string', 'max:8'],
+            'form_token' => ['required', 'string', 'size:32'],
         ];
     }
 
@@ -80,23 +73,8 @@ class ContactHelper
         ];
     }
 
-    public static function captcha(string $token): Response
-    {
-        return QuoteFormGuard::imageResponse($token);
-    }
-
     public static function add(Request $request)
     {
-        $guard = QuoteFormGuard::inspect($request);
-
-        if ($guard['action'] === 'silent') {
-            return self::silentAccept($request);
-        }
-
-        if ($guard['action'] === 'error') {
-            return self::blocked($request, $guard['message'] ?? 'Please complete the security code.');
-        }
-
         $validator = Validator::make($request->all(), self::rules(), self::messages());
 
         if ($validator->fails()) {
@@ -133,7 +111,14 @@ class ContactHelper
 
         $validated = $validator->validated();
 
-<<<<<<< HEAD
+        if ($spam = QuoteFormGuard::spamReason($validated)) {
+            return self::blocked($request, $spam);
+        }
+
+        if (QuoteFormGuard::tooManySends($request)) {
+            return self::blocked($request, 'Too many quote requests from this connection. Please call us instead.');
+        }
+
         $email = $validated['email'] ?? null;
         $title = $validated['title'] ?? null;
         $message = $validated['message'] ?? null;
@@ -144,22 +129,6 @@ class ContactHelper
             'phone' => $validated['phone'],
             'title' => $title ?: 'Website enquiry',
             'message' => $message ?: 'Please call the customer. They sent this request from the website form.',
-=======
-        if ($spam = QuoteFormGuard::spamReason($validated)) {
-            return self::blocked($request, $spam);
-        }
-
-        if (QuoteFormGuard::tooManySends($request)) {
-            return self::blocked($request, 'Too many quote requests from this connection. Please call us instead.');
-        }
-
-        $payload = [
-            'name' => $validated['name'],
-            'email' => $validated['email'] ?? '',
-            'phone' => $validated['phone'],
-            'title' => ($validated['title'] ?? '') !== '' ? $validated['title'] : 'Quote request',
-            'message' => ($validated['message'] ?? '') !== '' ? $validated['message'] : 'Customer asked to be contacted by phone.',
->>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
         ];
 
         $ownerEmail = config('company.quote_email')
@@ -185,7 +154,8 @@ class ContactHelper
         try {
             Mail::to($ownerEmail)->send(new QuoteRequestMail($payload, forCustomer: false));
 
-<<<<<<< HEAD
+            QuoteFormGuard::markSent($request);
+
             if (! empty($payload['email'])) {
                 Mail::to($payload['email'])->send(new QuoteRequestMail($payload, forCustomer: true));
             }
@@ -193,17 +163,6 @@ class ContactHelper
             $success = empty($payload['email'])
                 ? 'Your quote request has been sent. We will call you back soon.'
                 : 'Your quote request has been sent. A confirmation email has also been sent to you.';
-=======
-            QuoteFormGuard::markSent($request);
-
-            if ($payload['email'] !== '') {
-                Mail::to($payload['email'])->send(new QuoteRequestMail($payload, forCustomer: true));
-            }
-
-            $success = $payload['email'] !== ''
-                ? 'Your quote request has been sent. A confirmation email has also been sent to you.'
-                : 'Your quote request has been sent. We will call you soon.';
->>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
 
             if ($request->expectsJson()) {
                 return response()->json([
@@ -249,20 +208,6 @@ class ContactHelper
             ->withErrors(['captcha' => $message])
             ->with('quote_error', $message)
             ->withInput()
-            ->withFragment('quote');
-    }
-
-    private static function silentAccept(Request $request)
-    {
-        if ($request->expectsJson()) {
-            return response()->json([
-                'status' => 'success',
-                'msg' => 'Your quote request has been sent. We will get back to you soon.',
-            ]);
-        }
-
-        return back()
-            ->with('quote_success', 'Your quote request has been sent. A confirmation email has also been sent to you.')
             ->withFragment('quote');
     }
 }

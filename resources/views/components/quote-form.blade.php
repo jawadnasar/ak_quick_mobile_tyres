@@ -5,15 +5,11 @@
 
 @php
     $fieldClass = 'input-field mt-1.5';
-<<<<<<< HEAD
     $captchaToken = old('form_token');
 
     if (! is_string($captchaToken) || ! \App\Helpers\QuoteFormGuard::exists($captchaToken)) {
         $captchaToken = \App\Helpers\QuoteFormGuard::issue();
     }
-=======
-    $captcha = \App\Helpers\QuoteFormGuard::issue();
->>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
 @endphp
 
 <section id="{{ $id }}" @class(['scroll-mt-24', $compact ? '' : 'section-padding bg-ink-50'])>
@@ -41,21 +37,12 @@
             </div>
             @endif
 
-<<<<<<< HEAD
             <form action="{{ route('contact.add') }}" method="POST" class="mt-8 space-y-5" style="position:relative;">
                 @csrf
                 <input type="hidden" name="form_token" value="{{ $captchaToken }}" data-captcha-token autocomplete="off">
 
                 <div aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
                     <label for="{{ $id }}_extra_field">Leave blank</label>
-=======
-            <form action="{{ route('contact.add') }}" method="POST" class="mt-8 space-y-5" style="position:relative;" novalidate>
-                @csrf
-                <input type="hidden" name="form_token" value="{{ $captcha['token'] }}">
-
-                <div aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
-                    <label for="{{ $id }}_extra_field">Website</label>
->>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
                     <input type="text" name="extra_field" id="{{ $id }}_extra_field" tabindex="-1" autocomplete="off" value="">
                 </div>
 
@@ -132,29 +119,6 @@
                     <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                     @error('form_token')
-                    <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    <label for="{{ $id }}_captcha" class="block text-sm font-semibold text-ink-800">Security code <span class="text-brand-500">*</span></label>
-                    @if($captcha['mode'] === 'image')
-                    <div class="mt-1.5" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
-                        <img src="{{ route('contact.captcha', ['token' => $captcha['token']]) }}" alt="Security code" width="180" height="56"
-                             style="height:56px;width:180px;border-radius:0.5rem;border:1px solid #c9d5e3;background:#f3f6f9;">
-                        <input type="text" name="captcha" id="{{ $id }}_captcha" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required maxlength="8"
-                               class="input-field" style="margin-top:0;max-width:9rem;" placeholder="Enter code">
-                    </div>
-                    <p class="mt-1.5 text-xs text-ink-400">
-                        Type the characters from the image.
-                        <a href="{{ request()->fullUrlWithQuery(['code' => time()]) }}#{{ $id }}" class="font-semibold text-brand-500 hover:underline">Get a new code</a>
-                    </p>
-                    @else
-                    <p class="mt-1 text-sm text-ink-500">What is {{ $captcha['question'] }}?</p>
-                    <input type="text" name="captcha" id="{{ $id }}_captcha" inputmode="numeric" autocomplete="off" required maxlength="8"
-                           class="{{ $fieldClass }}" style="max-width:9rem;" placeholder="Answer">
-                    @endif
-                    @error('captcha')
                     <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>

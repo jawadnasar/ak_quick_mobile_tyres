@@ -25,7 +25,6 @@ class ContactController extends Controller
 
     public function captcha(string $token)
     {
-<<<<<<< HEAD
         return QuoteFormGuard::image($token);
     }
 
@@ -37,8 +36,5 @@ class ContactController extends Controller
             'token' => $token,
             'image' => route('contact.captcha', ['token' => $token]),
         ]);
-=======
-        return ContactHelper::captcha($token);
->>>>>>> 8de614c607ad1e9cf47b6ecd42cff4f12323859f
     }
 }
