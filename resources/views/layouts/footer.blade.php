@@ -89,6 +89,18 @@
             </div>
         </div>
 
+        <div class="mt-12 overflow-hidden rounded-xl border border-white/15">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.9143212183544!2d-0.2008266!3d51.09158869999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x26f7cfc18606fcb3%3A0xbd8a20c4580de3f1!2sAK%20Quick%20Mobile%20Tyres%20Crawley!5e0!3m2!1sen!2s!4v1794327992283!5m2!1sen!2s"
+                title="AK Quick Mobile Tyres Crawley on Google Maps"
+                width="600"
+                height="450"
+                style="border:0;display:block;width:100%;height:320px;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+
         <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/15 pt-8 sm:flex-row">
             <p class="text-sm text-brand-200">
                 &copy; {{ date('Y') }} {{ $company['name'] }}. All rights reserved.
