@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => '24/7 AK Quick Mobile Tyres',
+    'name' => 'AK Quick Mobile Tyres Crawley',
     'short_name' => 'AK Quick Mobile Tyres',
     'tagline' => 'Mobile tyre fitting that comes to you',
     'description' => '24/7 AK Quick Mobile Tyres provides emergency mobile tyre fitting, puncture repairs and roadside tyre assistance across the UK. Available day and night. We come to you at the roadside, at home or at work.',
