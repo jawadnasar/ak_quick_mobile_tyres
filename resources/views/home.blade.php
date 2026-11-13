@@ -23,17 +23,17 @@
                 {{ $company['name'] }}
             </p>
             <h1 class="mt-4 font-display text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:mt-5 sm:text-5xl lg:text-6xl text-balance">
-                Mobile tyre fitting that comes to you
+                24/7 Mobile Tyre Fitting in Crawley
             </h1>
             <p class="mt-4 max-w-xl text-sm leading-relaxed text-ink-200 sm:mt-6 sm:text-base sm:text-ink-300 lg:text-lg">
-                Emergency roadside assistance, puncture repair and on-the-spot fitting, day or night, wherever you are.
+                {{ $company['short_name'] }} is a tyre company that comes to you in Crawley, West Sussex. We fit new and part worn tyres, repair punctures and remove locking wheel nuts at your home, your workplace or the roadside. Our phone is answered 24 hours a day, including nights and bank holidays. We tell you the full price before we set off.
             </p>
             <div class="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
                 <a href="{{ $tel }}" class="btn-call px-8 py-3.5 text-base">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                     Call {{ $company['phone'] }}
                 </a>
-                <a href="#services" class="btn-secondary-invert px-8 py-3.5 text-base">View services</a>
+                <a href="#services" class="btn-secondary-invert px-8 py-3.5 text-base">View all services</a>
             </div>
         </div>
     </div>
@@ -55,22 +55,57 @@
     </div>
 </section>
 
+{{-- Flat tyre: first H2 from the brief, same section shell as the rest of the page --}}
+<section class="section-padding bg-white" id="flat-tyre" aria-labelledby="flat-tyre-heading">
+    <div class="container-site">
+        <div class="mx-auto max-w-3xl">
+            <h2 id="flat-tyre-heading" class="section-title !mt-0">Flat Tyre: What to Do First</h2>
+            <p class="mt-5 text-base leading-relaxed text-ink-600 sm:text-lg">Get safe before you call anyone.</p>
+            <ul class="mt-6 space-y-4">
+                <li class="flex items-start gap-3">
+                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
+                    <span class="text-base leading-relaxed text-ink-700">Pull over onto flat, firm ground and switch on your hazard lights.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
+                    <span class="text-base leading-relaxed text-ink-700">Get everyone out on the side away from traffic and stand well back from the road.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
+                    <span class="text-base leading-relaxed text-ink-700">Do not keep driving. A flat tyre can crush the sidewall, and a crushed sidewall cannot be repaired.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
+                    <span class="text-base leading-relaxed text-ink-700">Ring <a href="{{ $tel }}" class="font-semibold text-ink-950 underline decoration-brand-500 underline-offset-2">{{ $company['phone'] }}</a>. Tell us where you are, what car you drive and the tyre size if you can see it.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
+                    <span class="text-base leading-relaxed text-ink-700">On the M23 or any motorway, call your breakdown provider or National Highways first. Leave the car by the left hand door and wait behind the barrier. Never try to change a wheel on the hard shoulder. Ring us once you are somewhere safe.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
 {{-- Services --}}
 <section class="section-padding bg-ink-50" id="services">
     <div class="container-site">
         <x-section-header
-            title="What we do"
-            subtitle="One call and we bring the workshop to your wheel."
+            title="Our Mobile Tyre Services"
+            subtitle="Every service below comes to you. Pick the one that matches your problem, or call and we will work it out on the phone."
             :centered="false"
         />
         <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($services as $service)
+            @php
+                $blurb = $serviceBlurbs[$service['slug']] ?? null;
+            @endphp
             <a href="{{ route('services.show', $service['slug']) }}" class="service-card group block">
                 <span class="service-icon" aria-hidden="true">
                     <i class="{{ $service['icon'] }}"></i>
                 </span>
-                <h3 class="mt-4 font-display text-lg font-bold tracking-tight text-ink-950">{{ $service['title'] }}</h3>
-                <p class="mt-3 text-sm leading-relaxed text-ink-500">{{ $service['short_description'] }}</p>
+                <h3 class="mt-4 font-display text-lg font-bold tracking-tight text-ink-950">{{ $blurb['title'] ?? $service['title'] }}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-ink-500">{{ $blurb['text'] ?? $service['short_description'] }}</p>
             </a>
             @endforeach
         </div>
@@ -140,10 +175,7 @@
 {{-- How It Works --}}
 <section class="section-padding bg-ink-50" id="how-it-works">
     <div class="container-site">
-        <x-section-header
-            title="How it works"
-            subtitle="Emergency tyre help made simple: four clear steps from call to back on the road."
-        />
+        <x-section-header title="How Our Mobile Tyre Fitting Works" />
 
         <figure class="mt-10 overflow-hidden rounded-xl border border-brand-100 bg-white shadow-soft">
             <div class="overflow-x-auto">
@@ -169,6 +201,9 @@
             </li>
             @endforeach
         </ol>
+        <p class="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-ink-600">
+            Have your locking wheel nut key ready. It is usually in the glovebox or the boot tool kit.
+        </p>
     </div>
 </section>
 
@@ -177,11 +212,9 @@
     <div class="container-site">
         <div class="mx-auto max-w-3xl text-center">
             <p class="section-label">About us</p>
-            <h2 class="section-title">Fast, reliable mobile tyre assistance</h2>
+            <h2 class="section-title">About AK Quick Mobile Tyres</h2>
             <p class="mt-5 text-base leading-relaxed text-ink-600 sm:text-lg">
-                <strong class="text-ink-950">{{ $company['name'] }}</strong> is here for drivers who need tyre help without the hassle of finding a garage.
-                Whether you have a flat at the roadside, a puncture on the driveway, or need a replacement at work, our mobile team comes directly to you,
-                with the tools, tyres and experience to get you moving again.
+                {{ $company['short_name'] }} is a tyre service based in Crawley. We carry Goodyear and budget tyres. We use trolley jacks and impact tools, and we set wheel nuts to the correct torque. We tell you the price before we set off, and we tell you straight when a tyre cannot be repaired.
             </p>
             <a href="{{ route('about-us') }}" class="btn-secondary-outline mt-8">More about us</a>
         </div>
@@ -191,11 +224,24 @@
 {{-- Service Area --}}
 <section class="section-padding bg-ink-50" id="service-area">
     <div class="container-site">
-        <div class="mx-auto max-w-3xl text-center">
-            <h2 class="section-title !mt-0">Wherever you need us</h2>
+        <div class="mx-auto max-w-3xl">
+            <h2 class="section-title !mt-0">Our Service Areas</h2>
+            <div class="mt-5 space-y-4 text-base leading-relaxed text-ink-600 sm:text-lg">
+                <p>We work across Crawley, in the RH10 and RH11 postcode areas. That includes Three Bridges, Pound Hill, Maidenbower, Tilgate, Furnace Green, Southgate, Northgate, West Green, Ifield, Langley Green, Broadfield and Bewbush. We also cover the town centre near County Mall and Crawley station, and the Manor Royal business area.</p>
+                <p>We reach nearby places such as Horley, Pease Pottage, Handcross, Crawley Down, Copthorne, Horsham and East Grinstead. On the road, we help drivers on the A23, the A264 and the A2011, and near M23 junctions 10 and 11, once you are in a safe place.</p>
+                <p>Near Gatwick Airport, car parks have their own rules, so check with the car park before you book a fitting there.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Workplace fitting: same centred text block as the service area above --}}
+<section class="section-padding bg-white" id="workplace" aria-labelledby="workplace-heading">
+    <div class="container-site">
+        <div class="mx-auto max-w-3xl">
+            <h2 id="workplace-heading" class="section-title !mt-0">Workplace Tyre Fitting for Company Cars and Vans</h2>
             <p class="mt-5 text-base leading-relaxed text-ink-600 sm:text-lg">
-                Stranded at the roadside, at home, at work or another location. Our mobile tyre team comes directly to you.
-                Call with your location and we will confirm attendance and an arrival estimate.
+                If your car or van is parked at work, we can fit tyres there while you do your job. Manor Royal is Crawley's main business area, with offices, warehouses and depots. Vans need tyres with the right load rating, so we match the size and rating on the sidewall. Call <a href="{{ $tel }}" class="font-semibold text-ink-950 underline decoration-brand-500 underline-offset-2">{{ $company['phone'] }}</a> to book several vehicles in one visit, and tell us where the van can park.
             </p>
         </div>
     </div>
@@ -206,16 +252,19 @@
     <div class="container-site">
         <div class="mx-auto max-w-3xl text-center">
             <h2 class="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl text-balance">
-                Tyre trouble? Don’t get stranded.
+                Book Your 24/7 Mobile Tyre Fitting Service
             </h2>
             <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">
-                Available 24/7 for emergency mobile tyre assistance, puncture repair and on-the-spot fitting.
+                Call {{ $company['phone'] }}. We answer 24 hours a day, 7 days a week. Or send the <a href="#quote" class="font-semibold text-white underline decoration-brand-300 underline-offset-2">quote form</a> with your location and tyre size, and we will reply with a price and an arrival time.
             </p>
             <a href="{{ $tel }}" class="btn-on-brand mt-8 px-10 py-4 text-base">
                 <i class="fa-solid fa-phone" aria-hidden="true"></i>
                 Call {{ $company['name'] }} now
             </a>
             <p class="mt-4 font-display text-xl font-bold text-white">{{ $company['phone'] }}</p>
+            <p class="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-brand-50/80">
+                {{ $company['short_name'] }}. Tyres fitted at your door in Crawley and nearby. Open 24 hours, 7 days a week. Phone: {{ $company['phone'] }}. Last updated: 11 November 2026.
+            </p>
         </div>
     </div>
 </section>
@@ -255,7 +304,7 @@
 <section class="section-padding bg-white" id="faq" x-data="faq()">
     <div class="container-site">
         <x-section-header
-            title="Common questions"
+            title="Frequently Asked Questions About Our Tyre Services"
             subtitle="Quick answers before you call, or call us anytime for urgent help."
         />
         <div class="mx-auto mt-12 max-w-3xl space-y-3">
@@ -265,7 +314,7 @@
                         class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                         @click="toggle({{ $index }})"
                         :aria-expanded="active === {{ $index }}">
-                    <span class="font-semibold text-ink-950">{{ $faq['question'] }}</span>
+                    <h3 class="m-0 text-base font-semibold text-ink-950">{{ $faq['question'] }}</h3>
                     <svg class="h-5 w-5 shrink-0 text-brand-500 transition" :class="active === {{ $index }} && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div x-show="active === {{ $index }}" x-transition style="display: none;">
@@ -276,4 +325,6 @@
         </div>
     </div>
 </section>
+
+@include('home.guides')
 @endsection
