@@ -1,7 +1,10 @@
 {{-- Advice topics. Cards fill the page on large screens and stack as full-width panels on a phone. --}}
-<section class="section-padding bg-ink-50" id="tyre-guides" aria-label="Tyre fitting advice">
-    <div class="container-site">
-        <div class="guide-grid">
+<div class="mt-14 border-t border-brand-200 pt-10 sm:mt-16 sm:pt-12" id="tyre-guides" aria-labelledby="tyre-guides-label">
+        <div class="max-w-2xl">
+            <p id="tyre-guides-label" class="section-label">Tyre advice</p>
+            <p class="mt-3 text-[15px] leading-relaxed text-ink-600 sm:text-base">Repairs, tread, size and pressure. The same rules we use when we come to you.</p>
+        </div>
+        <div class="guide-grid mt-8 sm:mt-10">
             <article class="guide-card">
                 <h2>Mobile Tyre Fitting vs a Local Garage</h2>
                 <p class="guide-copy">Yes, when your time or a damaged tyre is the problem. A garage may quote less on some tyres, so ask for both prices. With us you pay for the tyre and the fitting. You do not pay in petrol, queues or a lost morning. It makes the most sense when the tyre is flat, your car has no spare, or you cannot leave work. We quote the full price before we set off, so you can compare.</p>
@@ -73,9 +76,10 @@
                 <p class="guide-copy">Your new tyre must meet or beat the ratings in your car handbook. Give us this number when you call, or just give us your registration.</p>
             </article>
 
-            <article class="guide-card">
+            <article class="guide-card guide-card--wide">
                 <h2>Checking Tyre Tread Depth with a 20p Coin</h2>
-                <div class="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
+                <div class="mt-4 grid gap-4 lg:grid-cols-[minmax(0,20rem)_1fr] lg:items-start">
+                <div class="grid grid-cols-2 gap-2 sm:gap-3">
                     <div class="rounded-xl bg-brand-500 p-3 text-white sm:p-4">
                         <p class="font-display text-2xl font-bold leading-none sm:text-3xl">1.6 mm</p>
                         <p class="mt-2 text-[13px] leading-snug text-brand-100 sm:text-sm">Legal minimum for cars and light vans.</p>
@@ -85,14 +89,17 @@
                         <p class="mt-2 text-[13px] leading-snug text-ink-600 sm:text-sm">Fine, plus 3 penalty points, for each illegal tyre.</p>
                     </div>
                 </div>
-                <p class="guide-copy">Put a 20p coin into the main grooves of the tyre. If you can see the outer band of the coin, the tread may be too low. Check several spots around the tyre. A tread depth gauge gives an exact reading.</p>
+                <div class="lg:mt-0">
+                <p class="guide-copy lg:mt-0">Put a 20p coin into the main grooves of the tyre. If you can see the outer band of the coin, the tread may be too low. Check several spots around the tyre. A tread depth gauge gives an exact reading.</p>
                 <p class="guide-copy">The legal minimum for cars and light vans is 1.6 mm across the middle three quarters of the tyre and all the way round. You can be fined up to £2,500 and get 3 penalty points for each illegal tyre. Provisional figures show 5,662 convictions for defective tyres in the UK in 2025.</p>
+                </div>
+                </div>
             </article>
 
-            <article class="guide-card">
+            <article class="guide-card guide-card--wide">
                 <h2>When Tyre Damage Requires Replacement</h2>
                 <p class="guide-copy">We will not repair a tyre when:</p>
-                <ul class="guide-steps">
+                <ul class="guide-steps sm:grid-cols-2">
                     <li>The damage is in the sidewall.</li>
                     <li>The hole is bigger than 6 mm.</li>
                     <li>The tread is below 1.6 mm anywhere round the tyre.</li>
@@ -112,5 +119,4 @@
                 <p class="guide-copy">A nail or screw is the most common cause. Other causes are a worn valve, dirt or rust on the rim where the tyre seals, and cold weather, which lowers pressure. To find a leak, wipe soapy water on the tread, the valve and the rim. Bubbles show where air is escaping. Check pressures when the tyres are cold. The right figure is in your handbook or on the door frame. If you cannot find the leak, call us. We find it and tell you if a repair is possible.</p>
             </article>
         </div>
-    </div>
-</section>
+</div>

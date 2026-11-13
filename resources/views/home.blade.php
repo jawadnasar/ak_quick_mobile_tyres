@@ -22,18 +22,20 @@
             <p class="font-display text-sm font-semibold uppercase tracking-[0.22em] text-brand-100 sm:text-base">
                 {{ $company['name'] }}
             </p>
-            <h1 class="mt-4 font-display text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:mt-5 sm:text-5xl lg:text-6xl text-balance">
+            <h1 class="mt-4 font-display text-[1.85rem] font-extrabold leading-[1.12] tracking-tight text-white sm:mt-5 sm:text-5xl lg:text-6xl text-balance">
                 24/7 Mobile Tyre Fitting in Crawley
             </h1>
-            <p class="mt-4 max-w-xl text-sm leading-relaxed text-ink-200 sm:mt-6 sm:text-base sm:text-ink-300 lg:text-lg">
+            <div class="mt-5 flex flex-col gap-5 sm:mt-6">
+            <p class="order-2 max-w-xl text-[15px] leading-relaxed text-ink-200 sm:order-1 sm:text-base sm:text-ink-300 lg:text-lg">
                 {{ $company['short_name'] }} is a tyre company that comes to you in Crawley, West Sussex. We fit new and part worn tyres, repair punctures and remove locking wheel nuts at your home, your workplace or the roadside. Our phone is answered 24 hours a day, including nights and bank holidays. We tell you the full price before we set off.
             </p>
-            <div class="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
-                <a href="{{ $tel }}" class="btn-call px-8 py-3.5 text-base">
+            <div class="order-1 flex flex-col gap-3 sm:order-2 sm:flex-row sm:items-center">
+                <a href="{{ $tel }}" class="btn-call w-full justify-center px-8 py-3.5 text-base sm:w-auto">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                     Call {{ $company['phone'] }}
                 </a>
-                <a href="#services" class="btn-secondary-invert px-8 py-3.5 text-base">View all services</a>
+                <a href="#services" class="btn-secondary-invert w-full justify-center px-8 py-3.5 text-base sm:w-auto">View all services</a>
+            </div>
             </div>
         </div>
     </div>
@@ -58,8 +60,8 @@
 {{-- Flat tyre --}}
 <section class="section-padding bg-white" id="flat-tyre" aria-labelledby="flat-tyre-heading">
     <div class="container-site">
-        <div class="grid items-start gap-8 md:grid-cols-12 md:gap-10 lg:gap-12">
-            <div class="md:col-span-5 lg:col-span-4">
+        <div class="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+            <div class="lg:col-span-4">
                 <p class="section-label">Stay safe</p>
                 <h2 id="flat-tyre-heading" class="section-title text-balance">Flat Tyre: What to Do First</h2>
                 <p class="mt-4 text-[15px] leading-relaxed text-ink-600 sm:text-lg">Get safe before you call anyone.</p>
@@ -68,7 +70,7 @@
                     Call {{ $company['phone'] }}
                 </a>
             </div>
-            <ol class="guide-steps md:col-span-7 lg:col-span-8">
+            <ol class="guide-steps lg:col-span-8 lg:mt-0">
                 <li>Pull over onto flat, firm ground and switch on your hazard lights.</li>
                 <li>Get everyone out on the side away from traffic and stand well back from the road.</li>
                 <li>Do not keep driving. A flat tyre can crush the sidewall, and a crushed sidewall cannot be repaired.</li>
@@ -92,7 +94,7 @@
             @php
                 $blurb = $serviceBlurbs[$service['slug']] ?? null;
             @endphp
-            <a href="{{ route('services.show', $service['slug']) }}" class="service-card group block">
+            <a href="{{ route('services.show', $service['slug']) }}" class="service-card group block h-full">
                 <span class="service-icon" aria-hidden="true">
                     <i class="{{ $service['icon'] }}"></i>
                 </span>
@@ -144,21 +146,23 @@
 
             <aside class="cta-panel" aria-labelledby="need-tyre-now">
                 <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand-100">24/7 response</p>
-                <h2 id="need-tyre-now" class="mt-3 font-display text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Need a tyre now?</h2>
+                <p id="need-tyre-now" class="mt-3 font-display text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl">Need a tyre now?</p>
                 <p class="mt-3 text-brand-50/90">Tell us your location and tyre size. We do the rest.</p>
-                <a href="{{ $tel }}" class="btn-on-brand mt-8 w-full px-8 py-3.5 text-base sm:w-auto">
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a href="{{ $tel }}" class="btn-on-brand w-full justify-center px-8 py-3.5 text-base sm:w-auto">
                     <i class="fa-solid fa-phone" aria-hidden="true"></i>
                     Call {{ $company['phone'] }}
                 </a>
                 @if(!empty($company['google_business']))
-                <a href="{{ $company['google_business'] }}" target="_blank" rel="noopener noreferrer" class="btn-secondary-invert mt-3 w-full px-8 py-3.5 text-base sm:ml-3 sm:mt-8 sm:w-auto">
+                <a href="{{ $company['google_business'] }}" target="_blank" rel="noopener noreferrer" class="btn-secondary-invert w-full justify-center px-8 py-3.5 text-base sm:w-auto">
                     Find us on Google
                 </a>
                 @else
-                <a href="{{ route('contact') }}" class="btn-secondary-invert mt-3 w-full px-8 py-3.5 text-base sm:ml-3 sm:mt-8 sm:w-auto">
+                <a href="{{ route('contact') }}" class="btn-secondary-invert w-full justify-center px-8 py-3.5 text-base sm:w-auto">
                     Contact us
                 </a>
                 @endif
+                </div>
             </aside>
         </div>
     </div>
@@ -169,11 +173,11 @@
     <div class="container-site">
         <x-section-header title="How Our Mobile Tyre Fitting Works" />
 
-        <figure class="mt-10 overflow-hidden rounded-xl border border-brand-100 bg-white shadow-soft">
-            <div class="overflow-x-auto">
+        <figure class="mt-8 hidden overflow-hidden rounded-xl border border-brand-100 bg-white shadow-soft sm:mt-10 sm:block">
+            <div>
                 <img src="{{ asset('front-theme/assets/img/steps.jpg') }}"
                      alt="How it works: initial contact, we come to you, we fix the problem, then back on the road"
-                     class="h-auto w-full min-w-[40rem] object-contain object-top sm:min-w-0"
+                     class="h-auto w-full object-contain object-top"
                      width="1400"
                      height="700"
                      loading="lazy"
@@ -196,6 +200,8 @@
         <p class="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-ink-600">
             Have your locking wheel nut key ready. It is usually in the glovebox or the boot tool kit.
         </p>
+
+        @include('home.guides')
     </div>
 </section>
 
@@ -250,12 +256,12 @@
 {{-- Workplace fitting --}}
 <section class="section-padding bg-white" id="workplace" aria-labelledby="workplace-heading">
     <div class="container-site">
-        <div class="overflow-hidden rounded-2xl border border-brand-100 shadow-soft md:grid md:grid-cols-5">
-            <div class="bg-brand-500 p-6 text-white sm:p-8 md:col-span-2 md:p-8 lg:p-10">
+        <div class="overflow-hidden rounded-2xl border border-brand-100 shadow-soft lg:grid lg:grid-cols-5">
+            <div class="bg-brand-500 p-6 text-white sm:p-8 lg:col-span-2 lg:p-10">
                 <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand-100">At work</p>
                 <h2 id="workplace-heading" class="mt-3 font-display text-2xl font-bold leading-tight tracking-tight text-balance sm:text-3xl">Workplace Tyre Fitting for Company Cars and Vans</h2>
             </div>
-            <div class="bg-white p-6 sm:p-8 md:col-span-3 md:flex md:flex-col md:justify-center lg:p-10">
+            <div class="bg-white p-6 sm:p-8 lg:col-span-3 lg:flex lg:flex-col lg:justify-center lg:p-10">
                 <p class="text-[15px] leading-relaxed text-ink-700 sm:text-base">
                     If your car or van is parked at work, we can fit tyres there while you do your job. Manor Royal is Crawley's main business area, with offices, warehouses and depots. Vans need tyres with the right load rating, so we match the size and rating on the sidewall. Call {{ $company['phone'] }} to book several vehicles in one visit, and tell us where the van can park.
                 </p>
@@ -272,13 +278,13 @@
 <section class="section-padding mesh-dark" id="emergency-cta">
     <div class="container-site">
         <div class="mx-auto max-w-3xl text-center">
-            <h2 class="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl text-balance">
+            <h2 class="font-display text-[1.65rem] font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl text-balance">
                 Book Your 24/7 Mobile Tyre Fitting Service
             </h2>
             <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">
                 Call {{ $company['phone'] }}. We answer 24 hours a day, 7 days a week. Or send the <a href="#quote" class="font-semibold text-white underline decoration-brand-300 underline-offset-2">quote form</a> with your location and tyre size, and we will reply with a price and an arrival time.
             </p>
-            <a href="{{ $tel }}" class="btn-on-brand mt-8 px-10 py-4 text-base">
+            <a href="{{ $tel }}" class="btn-on-brand mt-8 w-full justify-center px-10 py-4 text-base sm:w-auto">
                 <i class="fa-solid fa-phone" aria-hidden="true"></i>
                 Call {{ $company['name'] }} now
             </a>
@@ -322,20 +328,20 @@
 <x-quote-form id="quote" />
 
 {{-- FAQ --}}
-<section class="section-padding bg-white" id="faq" x-data="faq()">
+<section class="section-padding bg-ink-50" id="faq" x-data="faq()">
     <div class="container-site">
         <x-section-header
             title="Frequently Asked Questions About Our Tyre Services"
             subtitle="Quick answers before you call, or call us anytime for urgent help."
         />
-        <div class="mx-auto mt-12 max-w-3xl space-y-3">
+        <div class="mx-auto mt-8 max-w-3xl space-y-3 sm:mt-10">
             @foreach($faqs as $index => $faq)
             <div class="overflow-hidden rounded-lg border border-ink-200 bg-white">
                 <button type="button"
                         class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                         @click="toggle({{ $index }})"
                         :aria-expanded="active === {{ $index }}">
-                    <h3 class="m-0 text-base font-semibold text-ink-950">{{ $faq['question'] }}</h3>
+                    <h3 class="m-0 min-w-0 flex-1 text-left text-base font-semibold leading-snug text-ink-950">{{ $faq['question'] }}</h3>
                     <svg class="h-5 w-5 shrink-0 text-brand-500 transition" :class="active === {{ $index }} && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div x-show="active === {{ $index }}" x-transition style="display: none;">
@@ -346,6 +352,4 @@
         </div>
     </div>
 </section>
-
-@include('home.guides')
 @endsection
