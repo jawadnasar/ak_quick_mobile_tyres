@@ -55,34 +55,26 @@
     </div>
 </section>
 
-{{-- Flat tyre: first H2 from the brief, same section shell as the rest of the page --}}
+{{-- Flat tyre --}}
 <section class="section-padding bg-white" id="flat-tyre" aria-labelledby="flat-tyre-heading">
     <div class="container-site">
-        <div class="mx-auto max-w-3xl">
-            <h2 id="flat-tyre-heading" class="section-title !mt-0">Flat Tyre: What to Do First</h2>
-            <p class="mt-5 text-base leading-relaxed text-ink-600 sm:text-lg">Get safe before you call anyone.</p>
-            <ul class="mt-6 space-y-4">
-                <li class="flex items-start gap-3">
-                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
-                    <span class="text-base leading-relaxed text-ink-700">Pull over onto flat, firm ground and switch on your hazard lights.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
-                    <span class="text-base leading-relaxed text-ink-700">Get everyone out on the side away from traffic and stand well back from the road.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
-                    <span class="text-base leading-relaxed text-ink-700">Do not keep driving. A flat tyre can crush the sidewall, and a crushed sidewall cannot be repaired.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
-                    <span class="text-base leading-relaxed text-ink-700">Ring <a href="{{ $tel }}" class="font-semibold text-ink-950 underline decoration-brand-500 underline-offset-2">{{ $company['phone'] }}</a>. Tell us where you are, what car you drive and the tyre size if you can see it.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-2 h-2 w-2 shrink-0 bg-brand-500" aria-hidden="true"></span>
-                    <span class="text-base leading-relaxed text-ink-700">On the M23 or any motorway, call your breakdown provider or National Highways first. Leave the car by the left hand door and wait behind the barrier. Never try to change a wheel on the hard shoulder. Ring us once you are somewhere safe.</span>
-                </li>
-            </ul>
+        <div class="grid items-start gap-8 md:grid-cols-12 md:gap-10 lg:gap-12">
+            <div class="md:col-span-5 lg:col-span-4">
+                <p class="section-label">Stay safe</p>
+                <h2 id="flat-tyre-heading" class="section-title text-balance">Flat Tyre: What to Do First</h2>
+                <p class="mt-4 text-[15px] leading-relaxed text-ink-600 sm:text-lg">Get safe before you call anyone.</p>
+                <a href="{{ $tel }}" class="btn-call mt-6 w-full sm:w-auto">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    Call {{ $company['phone'] }}
+                </a>
+            </div>
+            <ol class="guide-steps md:col-span-7 lg:col-span-8">
+                <li>Pull over onto flat, firm ground and switch on your hazard lights.</li>
+                <li>Get everyone out on the side away from traffic and stand well back from the road.</li>
+                <li>Do not keep driving. A flat tyre can crush the sidewall, and a crushed sidewall cannot be repaired.</li>
+                <li>Ring <a href="{{ $tel }}">{{ $company['phone'] }}</a>. Tell us where you are, what car you drive and the tyre size if you can see it.</li>
+                <li class="is-alert">On the M23 or any motorway, call your breakdown provider or National Highways first. Leave the car by the left hand door and wait behind the barrier. Never try to change a wheel on the hard shoulder. Ring us once you are somewhere safe.</li>
+            </ol>
         </div>
     </div>
 </section>
@@ -224,25 +216,54 @@
 {{-- Service Area --}}
 <section class="section-padding bg-ink-50" id="service-area">
     <div class="container-site">
-        <div class="mx-auto max-w-3xl">
-            <h2 class="section-title !mt-0">Our Service Areas</h2>
-            <div class="mt-5 space-y-4 text-base leading-relaxed text-ink-600 sm:text-lg">
-                <p>We work across Crawley, in the RH10 and RH11 postcode areas. That includes Three Bridges, Pound Hill, Maidenbower, Tilgate, Furnace Green, Southgate, Northgate, West Green, Ifield, Langley Green, Broadfield and Bewbush. We also cover the town centre near County Mall and Crawley station, and the Manor Royal business area.</p>
-                <p>We reach nearby places such as Horley, Pease Pottage, Handcross, Crawley Down, Copthorne, Horsham and East Grinstead. On the road, we help drivers on the A23, the A264 and the A2011, and near M23 junctions 10 and 11, once you are in a safe place.</p>
-                <p>Near Gatwick Airport, car parks have their own rules, so check with the car park before you book a fitting there.</p>
-            </div>
+        <div class="max-w-2xl">
+            <p class="section-label">Where we come to you</p>
+            <h2 class="section-title text-balance">Our Service Areas</h2>
+        </div>
+        <div class="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2 lg:grid-cols-3">
+            <article class="guide-card">
+                <h3 class="font-display text-lg font-bold tracking-tight text-ink-950 sm:text-xl">Crawley, RH10 and RH11</h3>
+                <p class="guide-copy">We work across Crawley, in the RH10 and RH11 postcode areas. We also cover the town centre near County Mall and Crawley station, and the Manor Royal business area.</p>
+                <ul class="mt-4 flex flex-wrap gap-2">
+                    @foreach(['Three Bridges', 'Pound Hill', 'Maidenbower', 'Tilgate', 'Furnace Green', 'Southgate', 'Northgate', 'West Green', 'Ifield', 'Langley Green', 'Broadfield', 'Bewbush'] as $place)
+                    <li class="place-chip">{{ $place }}</li>
+                    @endforeach
+                </ul>
+            </article>
+            <article class="guide-card">
+                <h3 class="font-display text-lg font-bold tracking-tight text-ink-950 sm:text-xl">Nearby and on the road</h3>
+                <p class="guide-copy">We reach nearby places, and we help drivers on the A23, the A264 and the A2011, and near M23 junctions 10 and 11, once you are in a safe place.</p>
+                <ul class="mt-4 flex flex-wrap gap-2">
+                    @foreach(['Horley', 'Pease Pottage', 'Handcross', 'Crawley Down', 'Copthorne', 'Horsham', 'East Grinstead', 'A23', 'A264', 'A2011', 'M23 J10', 'M23 J11'] as $place)
+                    <li class="place-chip">{{ $place }}</li>
+                    @endforeach
+                </ul>
+            </article>
+            <article class="guide-card md:col-span-2 lg:col-span-1">
+                <h3 class="font-display text-lg font-bold tracking-tight text-ink-950 sm:text-xl">Gatwick Airport</h3>
+                <p class="guide-copy">Near Gatwick Airport, car parks have their own rules, so check with the car park before you book a fitting there.</p>
+            </article>
         </div>
     </div>
 </section>
 
-{{-- Workplace fitting: same centred text block as the service area above --}}
+{{-- Workplace fitting --}}
 <section class="section-padding bg-white" id="workplace" aria-labelledby="workplace-heading">
     <div class="container-site">
-        <div class="mx-auto max-w-3xl">
-            <h2 id="workplace-heading" class="section-title !mt-0">Workplace Tyre Fitting for Company Cars and Vans</h2>
-            <p class="mt-5 text-base leading-relaxed text-ink-600 sm:text-lg">
-                If your car or van is parked at work, we can fit tyres there while you do your job. Manor Royal is Crawley's main business area, with offices, warehouses and depots. Vans need tyres with the right load rating, so we match the size and rating on the sidewall. Call <a href="{{ $tel }}" class="font-semibold text-ink-950 underline decoration-brand-500 underline-offset-2">{{ $company['phone'] }}</a> to book several vehicles in one visit, and tell us where the van can park.
-            </p>
+        <div class="overflow-hidden rounded-2xl border border-brand-100 shadow-soft md:grid md:grid-cols-5">
+            <div class="bg-brand-500 p-6 text-white sm:p-8 md:col-span-2 md:p-8 lg:p-10">
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand-100">At work</p>
+                <h2 id="workplace-heading" class="mt-3 font-display text-2xl font-bold leading-tight tracking-tight text-balance sm:text-3xl">Workplace Tyre Fitting for Company Cars and Vans</h2>
+            </div>
+            <div class="bg-white p-6 sm:p-8 md:col-span-3 md:flex md:flex-col md:justify-center lg:p-10">
+                <p class="text-[15px] leading-relaxed text-ink-700 sm:text-base">
+                    If your car or van is parked at work, we can fit tyres there while you do your job. Manor Royal is Crawley's main business area, with offices, warehouses and depots. Vans need tyres with the right load rating, so we match the size and rating on the sidewall. Call {{ $company['phone'] }} to book several vehicles in one visit, and tell us where the van can park.
+                </p>
+                <a href="{{ $tel }}" class="btn-call mt-6 w-full sm:w-auto">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    Call {{ $company['phone'] }}
+                </a>
+            </div>
         </div>
     </div>
 </section>

@@ -5,18 +5,37 @@
 @endphp
 
 @section('content')
-<x-page-hero :title="$service['title']" :breadcrumb="[
-    ['label' => 'Home', 'url' => route('home')],
-    ['label' => 'Services', 'url' => route('services')],
-    ['label' => $service['title'], 'url' => route('services.show', $service['slug'])],
-]">
-    {{ $service['short_description'] }}
+@php
+    $isEmergency = $service['slug'] === 'emergency-callout';
+@endphp
+
+<x-page-hero
+    :title="$isEmergency ? 'Emergency Tyre Call Out in Crawley: Fast Help at Your Roadside, Day or Night' : $service['title']"
+    :heading-class="$isEmergency ? 'font-display text-[1.65rem] font-bold leading-[1.15] tracking-tight text-white sm:text-3xl lg:text-4xl' : 'font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl'"
+    :breadcrumb="[
+        ['label' => 'Home', 'url' => route('home')],
+        ['label' => 'Services', 'url' => route('services')],
+        ['label' => $service['title'], 'url' => route('services.show', $service['slug'])],
+    ]"
+>
+    @if($isEmergency)
+        <p>A burst tyre never picks a good moment. It happens on the way home, before an early shift or in a dark car park. {{ config('company.short_name') }} runs an emergency tyre call out in Crawley, West Sussex. Our mobile tyre technician drives to you with a trolley jack and impact tools, so you do not have to limp to a garage. We replace flat, burst and damaged tyres, and we repair punctures when it is safe to do so. We answer the phone 24 hours a day, 7 days a week. You hear the full price before we set off.</p>
+        <a href="{{ $tel }}" class="btn-on-brand mt-6 w-full sm:w-auto">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            Call {{ config('company.phone') }}
+        </a>
+    @else
+        {{ $service['short_description'] }}
+    @endif
 </x-page-hero>
 
 <section class="section-padding bg-ink-50">
     <div class="container-site">
         <div class="grid gap-12 lg:grid-cols-3">
             <div class="space-y-12 lg:col-span-2">
+                @if($isEmergency)
+                @include('services.partials.emergency-callout')
+                @else
                 <div>
                     <h2 class="font-display text-2xl font-bold tracking-tight text-ink-950">What we deliver</h2>
                     <ul class="mt-6 grid gap-3 sm:grid-cols-2">
@@ -74,6 +93,7 @@
                     </div>
                 </div>
                 @endif
+                @endif
             </div>
 
             <div class="space-y-6">
@@ -91,12 +111,25 @@
 
 <section class="section-padding mesh-dark">
     <div class="container-site text-center">
+        @if($isEmergency)
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white text-balance sm:text-3xl">Need an emergency tyre call out in Crawley right now?</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">Call {{ config('company.phone') }}. We answer 24 hours a day, 7 days a week. Tell us where you are, what car you drive and what has happened. We give you an arrival time and confirm the price before we travel, and we get you back on the road.</p>
+        <a href="{{ $tel }}" class="btn-on-brand mt-6 w-full sm:w-auto">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            Call {{ config('company.phone') }}
+        </a>
+        <div class="mt-4 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <a href="{{ route('home') }}" class="btn-secondary-invert w-full sm:w-auto">AK Quick Mobile Tyres</a>
+            <a href="{{ route('contact') }}" class="btn-secondary-invert w-full sm:w-auto">Contact us</a>
+        </div>
+        @else
         <h2 class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">Ready for {{ $service['title'] }}?</h2>
         <p class="mx-auto mt-4 max-w-lg text-brand-50/90">Tell us where you are and what you need. We come to you.</p>
         <a href="{{ $tel }}" class="btn-on-brand mt-6">
             <i class="fa-solid fa-phone" aria-hidden="true"></i>
             Call {{ config('company.phone') }}
         </a>
+        @endif
     </div>
 </section>
 @endsection

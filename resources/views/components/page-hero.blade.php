@@ -3,6 +3,7 @@
     'breadcrumb' => [],
     'image' => null,
     'position' => 'center',
+    'headingClass' => 'font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl',
 ])
 
 @php
@@ -39,9 +40,9 @@
         </nav>
         @endif
         <div class="max-w-3xl border-l-4 border-white/70 pl-5">
-            <h1 class="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">{{ $title }}</h1>
+            <h1 @class([$headingClass, 'text-balance'])>{{ $title }}</h1>
             @if($slot->isNotEmpty())
-            <p class="mt-4 text-lg text-brand-50/90">{{ $slot }}</p>
+            <div class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-50/90">{{ $slot }}</div>
             @endif
         </div>
     </div>

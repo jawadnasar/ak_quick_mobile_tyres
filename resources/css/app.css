@@ -201,6 +201,70 @@
     .legal-content strong {
         @apply font-semibold text-ink-950;
     }
+
+    .guide-grid {
+        @apply grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 md:gap-6;
+    }
+
+    .guide-card {
+        @apply min-w-0 rounded-2xl border border-brand-100 bg-white p-5 shadow-soft sm:p-7;
+    }
+
+    .guide-card--wide {
+        @apply md:col-span-2;
+    }
+
+    .guide-card h2 {
+        @apply font-display text-[1.35rem] font-bold leading-tight tracking-tight text-ink-950 sm:text-2xl lg:text-[1.7rem];
+        text-wrap: balance;
+    }
+
+    .guide-copy {
+        @apply mt-3 text-[15px] leading-relaxed text-ink-600 sm:text-base;
+    }
+
+    .guide-steps {
+        counter-reset: guide;
+        @apply mt-4 grid list-none grid-cols-1 gap-2 sm:mt-5 sm:gap-3;
+    }
+
+    .guide-steps > li {
+        counter-increment: guide;
+        @apply flex min-w-0 items-start gap-3 rounded-xl border border-brand-100 bg-brand-50 px-3 py-3 text-[15px] leading-snug text-ink-700 sm:px-4 sm:py-3.5 sm:text-base sm:leading-relaxed;
+    }
+
+    .guide-steps > li::before {
+        content: counter(guide, decimal-leading-zero);
+        @apply mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-500 font-display text-[11px] font-bold text-white sm:h-8 sm:w-8 sm:text-xs;
+    }
+
+    .guide-steps a {
+        @apply whitespace-nowrap font-semibold text-ink-950 underline decoration-brand-400 underline-offset-2;
+    }
+
+    .guide-steps > li.is-alert {
+        @apply border-brand-300 bg-white;
+    }
+
+    .spec-grid {
+        @apply mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3;
+    }
+
+    .spec-tile {
+        @apply min-w-0 rounded-xl border border-brand-100 bg-brand-50 p-3 sm:p-4;
+    }
+
+    .spec-tile strong {
+        @apply block font-display text-lg font-bold leading-none text-brand-600 sm:text-xl;
+    }
+
+    .spec-tile span {
+        @apply mt-1.5 block text-[13px] leading-snug text-ink-600 sm:text-sm;
+    }
+
+    .place-chip {
+        @apply inline-flex max-w-full items-center rounded-full border border-brand-200 bg-white px-3 py-1.5 text-[13px] font-semibold leading-none text-ink-800 sm:text-sm;
+    }
 }
 
 @layer utilities {
