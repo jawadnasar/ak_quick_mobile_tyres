@@ -70,12 +70,12 @@
                     Call {{ $company['phone'] }}
                 </a>
             </div>
-            <ol class="guide-steps lg:col-span-8 lg:mt-0">
-                <li>Pull over onto flat, firm ground and switch on your hazard lights.</li>
-                <li>Get everyone out on the side away from traffic and stand well back from the road.</li>
-                <li>Do not keep driving. A flat tyre can crush the sidewall, and a crushed sidewall cannot be repaired.</li>
-                <li>Ring <a href="{{ $tel }}">{{ $company['phone'] }}</a>. Tell us where you are, what car you drive and the tyre size if you can see it.</li>
-                <li class="is-alert">On the M23 or any motorway, call your breakdown provider or National Highways first. Leave the car by the left hand door and wait behind the barrier. Never try to change a wheel on the hard shoulder. Ring us once you are somewhere safe.</li>
+            <ol class="guide-steps sm:grid-cols-2 lg:col-span-8 lg:mt-0">
+                <li><span class="min-w-0"><strong class="font-display text-ink-950">Pull over</strong> onto flat, firm ground and switch on your hazard lights.</span></li>
+                <li><span class="min-w-0"><strong class="font-display text-ink-950">Get everyone out</strong> on the side away from traffic and stand well back from the road.</span></li>
+                <li><span class="min-w-0"><strong class="font-display text-ink-950">Do not keep driving.</strong> A flat tyre can crush the sidewall, and a crushed sidewall cannot be repaired.</span></li>
+                <li><span class="min-w-0"><strong class="font-display text-ink-950">Ring <a href="{{ $tel }}">{{ $company['phone'] }}</a>.</strong> Tell us where you are, what car you drive and the tyre size if you can see it.</span></li>
+                <li class="is-alert sm:col-span-2"><span class="min-w-0"><strong class="font-display text-ink-950">On the M23 or any motorway,</strong> call your breakdown provider or National Highways first. Leave the car by the left hand door and wait behind the barrier. Never try to change a wheel on the hard shoulder. Ring us once you are somewhere safe.</span></li>
             </ol>
         </div>
     </div>
@@ -226,26 +226,34 @@
             <p class="section-label">Where we come to you</p>
             <h2 class="section-title text-balance">Our Service Areas</h2>
         </div>
-        <div class="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2 lg:grid-cols-3">
-            <article class="guide-card">
+        <div class="mt-8 grid items-stretch gap-4 sm:mt-10 md:grid-cols-2 lg:grid-cols-3">
+            <article class="guide-card flex h-full flex-col">
                 <h3 class="font-display text-lg font-bold tracking-tight text-ink-950 sm:text-xl">Crawley, RH10 and RH11</h3>
                 <p class="guide-copy">We work across Crawley, in the RH10 and RH11 postcode areas. We also cover the town centre near County Mall and Crawley station, and the Manor Royal business area.</p>
-                <ul class="mt-4 flex flex-wrap gap-2">
+                <p class="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-500">Towns</p>
+                <ul class="mt-3 flex flex-wrap gap-2">
                     @foreach(['Three Bridges', 'Pound Hill', 'Maidenbower', 'Tilgate', 'Furnace Green', 'Southgate', 'Northgate', 'West Green', 'Ifield', 'Langley Green', 'Broadfield', 'Bewbush'] as $place)
                     <li class="place-chip">{{ $place }}</li>
                     @endforeach
                 </ul>
             </article>
-            <article class="guide-card">
+            <article class="guide-card flex h-full flex-col">
                 <h3 class="font-display text-lg font-bold tracking-tight text-ink-950 sm:text-xl">Nearby and on the road</h3>
                 <p class="guide-copy">We reach nearby places, and we help drivers on the A23, the A264 and the A2011, and near M23 junctions 10 and 11, once you are in a safe place.</p>
-                <ul class="mt-4 flex flex-wrap gap-2">
-                    @foreach(['Horley', 'Pease Pottage', 'Handcross', 'Crawley Down', 'Copthorne', 'Horsham', 'East Grinstead', 'A23', 'A264', 'A2011', 'M23 J10', 'M23 J11'] as $place)
+                <p class="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-500">Places</p>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                    @foreach(['Horley', 'Pease Pottage', 'Handcross', 'Crawley Down', 'Copthorne', 'Horsham', 'East Grinstead'] as $place)
+                    <li class="place-chip">{{ $place }}</li>
+                    @endforeach
+                </ul>
+                <p class="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-brand-500">Roads</p>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                    @foreach(['A23', 'A264', 'A2011', 'M23 J10', 'M23 J11'] as $place)
                     <li class="place-chip">{{ $place }}</li>
                     @endforeach
                 </ul>
             </article>
-            <article class="guide-card md:col-span-2 lg:col-span-1">
+            <article class="guide-card flex h-full flex-col md:col-span-2 lg:col-span-1">
                 <h3 class="font-display text-lg font-bold tracking-tight text-ink-950 sm:text-xl">Gatwick Airport</h3>
                 <p class="guide-copy">Near Gatwick Airport, car parks have their own rules, so check with the car park before you book a fitting there.</p>
             </article>

@@ -20,7 +20,10 @@
 >
     @if($isEmergency)
         <div class="flex flex-col">
-            <p class="order-2 text-[15px] font-normal leading-relaxed sm:order-1 sm:text-base lg:text-lg">A burst tyre never picks a good moment. It happens on the way home, before an early shift or in a dark car park. {{ config('company.short_name') }} runs an emergency tyre call out in Crawley, West Sussex. Our mobile tyre technician drives to you with a trolley jack and impact tools, so you do not have to limp to a garage. We replace flat, burst and damaged tyres, and we repair punctures when it is safe to do so. We answer the phone 24 hours a day, 7 days a week. You hear the full price before we set off.</p>
+            <div class="order-2 sm:order-1">
+                <p class="text-[15px] font-normal leading-relaxed sm:text-base lg:text-lg">A burst tyre never picks a good moment. It happens on the way home, before an early shift or in a dark car park.</p>
+                <p class="mt-3 text-[15px] font-normal leading-relaxed sm:text-base lg:text-lg">{{ config('company.short_name') }} runs an emergency tyre call out in Crawley, West Sussex. Our mobile tyre technician drives to you with a trolley jack and impact tools, so you do not have to limp to a garage. We replace flat, burst and damaged tyres, and we repair punctures when it is safe to do so. We answer the phone 24 hours a day, 7 days a week. You hear the full price before we set off.</p>
+            </div>
             <a href="{{ $tel }}" class="btn-on-brand order-1 mb-5 w-full sm:order-2 sm:mb-0 sm:mt-6 sm:w-auto">
                 <i class="fa-solid fa-phone" aria-hidden="true"></i>
                 Call {{ config('company.phone') }}

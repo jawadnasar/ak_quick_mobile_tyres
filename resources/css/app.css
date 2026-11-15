@@ -216,8 +216,16 @@
     }
 
     .guide-card h2 {
-        @apply font-display text-xl font-bold leading-tight tracking-tight text-ink-950 sm:text-2xl;
+        @apply border-b border-brand-100 pb-3 font-display text-xl font-bold leading-tight tracking-tight text-ink-950 sm:text-2xl;
         text-wrap: balance;
+    }
+
+    .guide-card h3 {
+        @apply mt-4 font-display text-base font-bold leading-snug tracking-tight text-ink-950;
+    }
+
+    .guide-card > h3:first-child {
+        @apply mt-0;
     }
 
     #services,
@@ -247,7 +255,9 @@
 
     .guide-steps > li {
         counter-increment: guide;
-        @apply flex min-w-0 items-start gap-3 rounded-xl border border-brand-100 bg-brand-50 px-3 py-3 text-[15px] leading-snug text-ink-700 sm:px-4 sm:py-3.5 sm:text-base sm:leading-relaxed;
+        @apply flex min-w-0 items-start gap-3 rounded-xl border border-brand-200 bg-ink-50 px-3 py-3 text-[15px] leading-snug text-ink-700 sm:px-4 sm:py-3.5 sm:text-base sm:leading-relaxed;
+        border-left-width: 3px;
+        border-left-color: theme('colors.brand.500');
     }
 
     .guide-steps > li::before {
@@ -260,7 +270,20 @@
     }
 
     .guide-steps > li.is-alert {
-        @apply border-brand-300 bg-white;
+        @apply border-brand-500 bg-white;
+    }
+
+    .guide-points {
+        @apply mt-4 grid grid-cols-1 gap-2.5;
+    }
+
+    .guide-points > li {
+        @apply relative pl-6 text-[15px] leading-relaxed text-ink-700 sm:text-base;
+    }
+
+    .guide-points > li::before {
+        content: "";
+        @apply absolute left-0 top-[0.55rem] h-2 w-2 rounded-full bg-brand-500;
     }
 
     .spec-grid {
@@ -280,7 +303,7 @@
     }
 
     .place-chip {
-        @apply inline-flex max-w-full items-center rounded-full border border-brand-200 bg-white px-3 py-1.5 text-[13px] font-semibold leading-none text-ink-800 sm:text-sm;
+        @apply inline-flex max-w-full items-center rounded-full border border-brand-300 bg-brand-50 px-3 py-1.5 text-[13px] font-semibold leading-none text-brand-800 sm:text-sm;
     }
 }
 
