@@ -1,0 +1,20 @@
+{
+  "_alpine-CLWRBzRS.js": {
+    "file": "assets/alpine-CLWRBzRS.js",
+    "name": "alpine"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DGU_KkJ0.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DDb0uWxK.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_alpine-CLWRBzRS.js"
+    ]
+  }
+}
