@@ -42,9 +42,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    @if (!empty($meta['schema']))
-        <script type="application/ld+json">{!! json_encode($meta['schema'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
-    @endif
+    @php
+        $schemaBlocks = $meta['schema'] ?? null;
+        if (is_array($schemaBlocks) && array_is_list($schemaBlocks)) {
+            $schemaBlocks = $schemaBlocks;
+        } elseif (! empty($schemaBlocks)) {
+            $schemaBlocks = [$schemaBlocks];
+        } else {
+            $schemaBlocks = [];
+        }
+    @endphp
+    @foreach ($schemaBlocks as $schemaBlock)
+        <script type="application/ld+json">{!! json_encode($schemaBlock, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    @endforeach
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RB7KTBT5LP"></script>
