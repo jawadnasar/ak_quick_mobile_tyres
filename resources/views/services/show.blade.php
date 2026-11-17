@@ -15,7 +15,7 @@
     :breadcrumb="[
         ['label' => 'Home', 'url' => route('home')],
         ['label' => 'Services', 'url' => route('services')],
-        ['label' => $service['title'], 'url' => route('services.show', $service['slug'])],
+        ['label' => $service['title'], 'url' => \App\Helpers\ServicesCatalog::url($service)],
     ]"
 >
     @if($isEmergency)

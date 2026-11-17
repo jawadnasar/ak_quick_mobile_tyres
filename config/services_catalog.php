@@ -34,7 +34,6 @@ return [
             ['question' => 'Can you meet me after I leave the motorway?', 'answer' => 'Yes, once you are somewhere safe, such as a service area or a side road. Tell us the road name and a landmark and we come to you.'],
             ['question' => 'Can you help if my car has run flat tyres?', 'answer' => 'Yes. We fit run flat tyres. They are rarely repairable, so we usually quote a replacement. Tell us if the warning light is on and how far you have driven.'],
             ['question' => 'What should I have ready before you arrive?', 'answer' => 'Have your locking wheel nut key and your car keys ready. Stay clear of the car and traffic. If you can, clear a flat space beside the wheel so we can jack the car.'],
-            ['question' => 'Need an emergency tyre call out in Crawley right now?', 'answer' => 'Call 07405 726167. We answer 24 hours a day, 7 days a week. Tell us where you are, what car you drive and what has happened. We give you an arrival time and confirm the price before we travel, and we get you back on the road.'],
         ],
     ],
     [

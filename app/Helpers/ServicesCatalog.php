@@ -14,6 +14,15 @@ class ServicesCatalog
         return collect(self::all())->firstWhere('slug', $slug);
     }
 
+    public static function url(array $service): string
+    {
+        if (($service['slug'] ?? null) === 'emergency-callout') {
+            return route('services.emergency');
+        }
+
+        return route('services.show', $service['slug']);
+    }
+
     public static function slugs(): array
     {
         return collect(self::all())->pluck('slug')->all();

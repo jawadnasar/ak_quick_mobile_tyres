@@ -21,6 +21,10 @@ Route::get('/testimonials', [AboutController::class, 'Testimonials'])->name('tes
 Route::get('/team', [AboutController::class, 'Team'])->name('team');
 
 Route::get('/services', [ServiceController::class, 'index'])->name('services');
+Route::get('/emergency-tyre-call-out-crawley', [ServiceController::class, 'show'])
+    ->defaults('slug', 'emergency-callout')
+    ->name('services.emergency');
+Route::permanentRedirect('/services/emergency-callout', '/emergency-tyre-call-out-crawley');
 Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');

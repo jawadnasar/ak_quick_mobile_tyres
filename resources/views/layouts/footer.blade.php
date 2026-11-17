@@ -63,7 +63,7 @@
                 <ul class="mt-4 space-y-3 text-sm text-brand-100">
                     @foreach($services as $service)
                     <li>
-                        <a href="{{ route('services.show', $service['slug']) }}" class="hover:text-white">
+                        <a href="{{ \App\Helpers\ServicesCatalog::url($service) }}" class="hover:text-white">
                             {{ $service['title'] }}
                         </a>
                     </li>

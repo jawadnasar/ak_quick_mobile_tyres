@@ -20,7 +20,7 @@ class SitemapController extends Controller
 
         foreach (\App\Helpers\ServicesCatalog::all() as $service) {
             $urls[] = [
-                'loc' => route('services.show', $service['slug']),
+                'loc' => \App\Helpers\ServicesCatalog::url($service),
                 'priority' => '0.8',
                 'changefreq' => 'monthly',
             ];

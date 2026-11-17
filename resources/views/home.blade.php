@@ -94,7 +94,7 @@
             @php
                 $blurb = $serviceBlurbs[$service['slug']] ?? null;
             @endphp
-            <a href="{{ route('services.show', $service['slug']) }}" class="service-card group block h-full">
+            <a href="{{ \App\Helpers\ServicesCatalog::url($service) }}" class="service-card group block h-full">
                 <span class="service-icon" aria-hidden="true">
                     <i class="{{ $service['icon'] }}"></i>
                 </span>

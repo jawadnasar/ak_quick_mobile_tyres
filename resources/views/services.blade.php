@@ -22,7 +22,7 @@
     <div class="container-site">
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($services as $service)
-            <a href="{{ route('services.show', $service['slug']) }}" class="service-card group block">
+            <a href="{{ \App\Helpers\ServicesCatalog::url($service) }}" class="service-card group block">
                 <div class="flex items-start justify-between gap-3">
                     <span class="service-icon" aria-hidden="true">
                         <i class="{{ $service['icon'] }}"></i>
