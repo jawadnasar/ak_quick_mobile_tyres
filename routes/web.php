@@ -25,6 +25,10 @@ Route::get('/emergency-tyre-call-out-crawley', [ServiceController::class, 'show'
     ->defaults('slug', 'emergency-callout')
     ->name('services.emergency');
 Route::permanentRedirect('/services/emergency-callout', '/emergency-tyre-call-out-crawley');
+Route::get('/mobile-puncture-repair-crawley', [ServiceController::class, 'show'])
+    ->defaults('slug', 'puncture-repairs')
+    ->name('services.puncture');
+Route::permanentRedirect('/services/puncture-repairs', '/mobile-puncture-repair-crawley');
 Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');

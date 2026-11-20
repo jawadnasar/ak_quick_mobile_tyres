@@ -20,6 +20,10 @@ class ServicesCatalog
             return route('services.emergency');
         }
 
+        if (($service['slug'] ?? null) === 'puncture-repairs') {
+            return route('services.puncture');
+        }
+
         return route('services.show', $service['slug']);
     }
 
