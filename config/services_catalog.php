@@ -130,8 +130,13 @@ return [
             ['step' => 'Finish', 'description' => 'Wheels refitted and torqued correctly.'],
         ],
         'faq' => [
-            ['question' => 'Will you damage my alloy wheels?', 'answer' => 'We use professional methods designed to remove locking nuts carefully. Always tell us the wheel type when you book.'],
-            ['question' => 'Can you remove nuts without the key?', 'answer' => 'Yes. That is exactly what this service is for when the key is lost or the nut is seized.'],
+            ['question' => 'Can you remove a locking wheel nut without the key?', 'answer' => 'Yes. Our mobile tyre technician removes locking wheel nuts without the key at your home, your workplace or a safe roadside spot in Crawley, using specialist tools. We check the wheel and the stud afterwards and show you the result.'],
+            ['question' => 'How much does locking wheel nut removal cost?', 'answer' => 'Checkatrade\'s 2023 UK guide gives about £40 to £60 for one nut and £55 to £85 for four, with mobile services slightly higher. Prices have moved since then. We quote the full price before we set off, and it does not change when we arrive.'],
+            ['question' => 'How long does it take to remove a locking wheel nut?', 'answer' => 'Checkatrade says four nuts take about half an hour on average, and longer for locks such as McGuard. A single nut usually takes less time, and a damaged or seized nut can take longer. We confirm the time on site.'],
+            ['question' => 'Will removal damage my alloy wheels?', 'answer' => 'A proper removal should not. Forced methods can ruin the nut and the lacquer or powder coating on alloy wheels. We do not recommend hammering a socket onto a rounded nut or drilling it yourself.'],
+            ['question' => 'Where can I find my locking wheel nut key?', 'answer' => 'Check the glovebox, under the boot floor near the spare wheel, the side pockets of the boot, under the seats, the door bins and the centre console. Keys often sit in a small plastic box or bag with the spare nuts.'],
+            ['question' => 'What happens after the locking nut is removed?', 'answer' => 'You can fit standard nuts, fit a new locking set or order a replacement key from a dealer using the lock code. The code is often in the handbook, on the nut box or bag, or on a card with the radio code.'],
+            ['question' => 'Do you remove locking wheel nuts in Crawley at night?', 'answer' => 'Yes. We answer the phone 24 hours a day, 7 days a week. Our usual arrival time in Crawley is 30 to 60 minutes for urgent jobs, depending on traffic and demand.'],
         ],
     ],
     [
@@ -161,8 +166,12 @@ return [
             ['step' => 'Advise', 'description' => 'Clear guidance before you drive on.'],
         ],
         'faq' => [
-            ['question' => 'Can you fit a space-saver spare?', 'answer' => 'Yes. We fit space-savers and full-size spares, and remind you of any speed or distance limits that apply.'],
-            ['question' => 'Do you rotate wheels as a service?', 'answer' => 'Where appropriate we can rotate wheels as part of a mobile visit. Ask when you call.'],
+            ['question' => 'Can you swap my flat wheel for my spare at home?', 'answer' => 'Yes. We come to your home, your workplace or a safe roadside spot in Crawley, take off the flat wheel and fit your spare. We tighten the nuts to the correct torque and check the pressure in the spare.'],
+            ['question' => 'How fast can I drive on a space saver wheel?', 'answer' => 'Kwik Fit says the top speed is usually 50 mph, shown on a sticker on the wheel. If the sticker is missing, keep to 30 mph until you reach help. A space saver is for short use only.'],
+            ['question' => 'Do I need to retighten the wheel nuts after a swap?', 'answer' => 'Which says a garage should retighten the nuts to the maker\'s torque setting, even with a full size spare. We tighten them to the correct torque on site and tell you if a recheck is worth doing.'],
+            ['question' => 'What if my car has no spare wheel?', 'answer' => 'Call us. We look at the tyre, repair it if the repair rules allow, or quote and fit a replacement tyre on the spot. You do not need a spare for that.'],
+            ['question' => 'Is it the law to carry a spare wheel in the UK?', 'answer' => 'No. Kwik Fit says no UK law says you must carry one. Any tyre in use must still meet the legal rules, including at least 1.6 mm of tread across the central three quarters.'],
+            ['question' => 'Can you fit my spare if I lost the locking wheel nut key?', 'answer' => 'Yes. We remove the locking nut, fit the spare and tell you your options for new locks or a replacement key.'],
         ],
     ],
     [

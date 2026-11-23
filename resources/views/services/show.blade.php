@@ -8,11 +8,27 @@
 @php
     $isEmergency = $service['slug'] === 'emergency-callout';
     $isPuncture = $service['slug'] === 'puncture-repairs';
-    $isLongform = $isEmergency || $isPuncture;
+    $isLocking = $service['slug'] === 'locking-nut-removal';
+    $isWheels = $service['slug'] === 'wheel-swaps-spares';
+    $isLongform = $isEmergency || $isPuncture || $isLocking || $isWheels;
+    $heroTitle = $service['title'];
+    $longformPartial = 'services.partials.locking-nut-removal';
+    if ($isEmergency) {
+        $heroTitle = 'Emergency Tyre Call Out in Crawley: Fast Help at Your Roadside, Day or Night';
+        $longformPartial = 'services.partials.emergency-callout';
+    } elseif ($isPuncture) {
+        $heroTitle = 'Mobile Puncture Repair in Crawley: We Fix Your Tyre at Home, Work or Roadside';
+        $longformPartial = 'services.partials.puncture-repairs';
+    } elseif ($isLocking) {
+        $heroTitle = 'Locking Wheel Nut Removal in Crawley: Lost Key, Stuck or Damaged Nut';
+    } elseif ($isWheels) {
+        $heroTitle = 'Spare Wheel Swap and Fitting in Crawley: We Change Your Wheel at Home or Roadside';
+        $longformPartial = 'services.partials.wheel-swaps-spares';
+    }
 @endphp
 
 <x-page-hero
-    :title="$isEmergency ? 'Emergency Tyre Call Out in Crawley: Fast Help at Your Roadside, Day or Night' : ($isPuncture ? 'Mobile Puncture Repair in Crawley: We Fix Your Tyre at Home, Work or Roadside' : $service['title'])"
+    :title="$heroTitle"
     :heading-class="$isLongform ? 'font-display text-[1.65rem] font-bold leading-[1.15] tracking-tight text-white sm:text-3xl lg:text-4xl' : 'font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl'"
     :breadcrumb="[
         ['label' => 'Home', 'url' => route('home')],
@@ -41,6 +57,26 @@
                 Call {{ config('company.phone') }}
             </a>
         </div>
+    @elseif($isWheels)
+        <div class="flex flex-col">
+            <div class="order-2 sm:order-1">
+                <p class="text-[15px] font-normal leading-relaxed sm:text-base lg:text-lg">Flat tyre and a spare in the boot, but no wish to kneel on the kerb? {{ config('company.short_name') }} offers spare wheel swap and fitting in Crawley, West Sussex. Our mobile tyre technician comes to your home, your workplace or a safe roadside spot. We take off the flat wheel, fit your spare and tighten every nut to the right torque. If your car has no spare, we help with that too. You hear the full price before we set off.</p>
+            </div>
+            <a href="{{ $tel }}" class="btn-on-brand order-1 mb-5 w-full sm:order-2 sm:mb-0 sm:mt-6 sm:w-auto">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                Call {{ config('company.phone') }}
+            </a>
+        </div>
+    @elseif($isLocking)
+        <div class="flex flex-col">
+            <div class="order-2 sm:order-1">
+                <p class="text-[15px] font-normal leading-relaxed sm:text-base lg:text-lg">Lost the key to your locking wheel nuts? {{ config('company.short_name') }} offers mobile locking wheel nut removal in Crawley, West Sussex. Our mobile tyre technician comes to your home, your workplace or a safe roadside spot. We remove the locking nut with specialist tools and aim to leave the wheel and the nut undamaged. You hear the full price before we set off.</p>
+            </div>
+            <a href="{{ $tel }}" class="btn-on-brand order-1 mb-5 w-full sm:order-2 sm:mb-0 sm:mt-6 sm:w-auto">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                Call {{ config('company.phone') }}
+            </a>
+        </div>
     @else
         {{ $service['short_description'] }}
     @endif
@@ -49,7 +85,7 @@
 @if($isLongform)
 <section class="section-padding bg-ink-50">
     <div class="container-site">
-        @include($isEmergency ? 'services.partials.emergency-callout' : 'services.partials.puncture-repairs')
+        @include($longformPartial)
     </div>
 </section>
 @else
@@ -146,6 +182,28 @@
         @elseif($isPuncture)
         <h2 class="font-display text-2xl font-bold tracking-tight text-white text-balance sm:text-3xl">Book Mobile Puncture Repair in Crawley</h2>
         <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">Call {{ config('company.phone') }}, 24 hours a day, 7 days a week. Tell us where you are, what you drive and what has happened. We give you an arrival time and confirm the price before we travel. {{ config('company.short_name') }}: the workshop that comes to you.</p>
+        <a href="{{ $tel }}" class="btn-on-brand mt-6 w-full sm:w-auto">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            Call {{ config('company.phone') }}
+        </a>
+        <div class="mt-4 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <a href="{{ route('home') }}" class="btn-secondary-invert w-full sm:w-auto">AK Quick Mobile Tyres</a>
+            <a href="{{ route('contact') }}" class="btn-secondary-invert w-full sm:w-auto">Contact us</a>
+        </div>
+        @elseif($isWheels)
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white text-balance sm:text-3xl">Book spare wheel swap and fitting in Crawley</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">Call {{ config('company.phone') }}. We answer 24 hours a day, 7 days a week. Tell us your car, where you are and what has happened to the tyre. We give you a price and an arrival time before we travel.</p>
+        <a href="{{ $tel }}" class="btn-on-brand mt-6 w-full sm:w-auto">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            Call {{ config('company.phone') }}
+        </a>
+        <div class="mt-4 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <a href="{{ route('home') }}" class="btn-secondary-invert w-full sm:w-auto">AK Quick Mobile Tyres</a>
+            <a href="{{ route('contact') }}" class="btn-secondary-invert w-full sm:w-auto">Contact us</a>
+        </div>
+        @elseif($isLocking)
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white text-balance sm:text-3xl">Book locking wheel nut removal in Crawley</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">Call {{ config('company.phone') }}. We answer 24 hours a day, 7 days a week. Tell us your car, where you are and what has gone wrong with the key. We give you a price and an arrival time before we travel.</p>
         <a href="{{ $tel }}" class="btn-on-brand mt-6 w-full sm:w-auto">
             <i class="fa-solid fa-phone" aria-hidden="true"></i>
             Call {{ config('company.phone') }}
