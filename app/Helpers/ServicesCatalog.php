@@ -24,6 +24,14 @@ class ServicesCatalog
             return route('services.puncture');
         }
 
+        if (($service['slug'] ?? null) === 'locking-nut-removal') {
+            return route('services.locking');
+        }
+
+        if (($service['slug'] ?? null) === 'wheel-swaps-spares') {
+            return route('services.wheels');
+        }
+
         return route('services.show', $service['slug']);
     }
 

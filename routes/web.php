@@ -29,6 +29,14 @@ Route::get('/mobile-puncture-repair-crawley', [ServiceController::class, 'show']
     ->defaults('slug', 'puncture-repairs')
     ->name('services.puncture');
 Route::permanentRedirect('/services/puncture-repairs', '/mobile-puncture-repair-crawley');
+Route::get('/locking-wheel-nut-removal-crawley', [ServiceController::class, 'show'])
+    ->defaults('slug', 'locking-nut-removal')
+    ->name('services.locking');
+Route::permanentRedirect('/services/locking-nut-removal', '/locking-wheel-nut-removal-crawley');
+Route::get('/spare-wheel-fitting-crawley', [ServiceController::class, 'show'])
+    ->defaults('slug', 'wheel-swaps-spares')
+    ->name('services.wheels');
+Route::permanentRedirect('/services/wheel-swaps-spares', '/spare-wheel-fitting-crawley');
 Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');

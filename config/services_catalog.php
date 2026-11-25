@@ -201,8 +201,12 @@ return [
             ['step' => 'Secure', 'description' => 'Torque and safety checks completed.'],
         ],
         'faq' => [
-            ['question' => 'Do you work on electric vehicles?', 'answer' => 'Yes. We cover EVs along with cars, vans and 4x4s, using appropriate jacking points and equipment.'],
-            ['question' => 'Can you attend commercial vans?', 'answer' => 'Yes. Vans and many light commercials are covered. Share the tyre size and location when you call.'],
+            ['question' => 'Can you fit tyres on my van at work?', 'answer' => 'Yes. We come to your yard, your unit or your car park in Crawley and fit the tyres there. You need a flat, safe place with room to work around the van.'],
+            ['question' => 'What does the C mean on a van tyre?', 'answer' => 'Kwik Fit says a C on the sidewall marks a tyre made for commercial vehicles, and that light commercial vehicles need C tyres. Your handbook gives the size, the load index and the speed rating.'],
+            ['question' => 'Can I fit car tyres on my van?', 'answer' => 'Kwik Fit says car tyres and van tyres are not made to be swapped, and van tyres have reinforced sidewalls for heavier loads. Tell us your registration number and we match the right tyre to your van.'],
+            ['question' => 'Do all four tyres on a 4x4 need to match?', 'answer' => 'TyreSafe says the front and rear tyres on a 4x4 should match, because different tread patterns turn at different speeds and strain the transfer box. We check the other tyres before we advise on a single replacement.'],
+            ['question' => 'Are all terrain tyres good for everyday driving?', 'answer' => 'Yes, for most drivers. 4x4tyres.co.uk says all terrain tyres are quieter, last longer and use less fuel than mud terrain tyres. They suit mostly road driving with some gravel and light mud.'],
+            ['question' => 'What is the legal tread depth for a van?', 'answer' => 'Goodyear gives the UK legal minimum as 1.6 mm for vans up to 3.5 tonnes, and 1 mm for heavier vehicles. Many fitters advise changing sooner, because wet grip drops as the tread wears.'],
         ],
     ],
     [

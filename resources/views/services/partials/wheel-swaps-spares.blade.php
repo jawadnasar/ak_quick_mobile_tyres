@@ -109,7 +109,7 @@
 
     <article class="guide-card">
         <h2>Locking wheel nuts and spare wheels</h2>
-        <p class="guide-copy">If your car has locking wheel nuts, you need the key to swap a wheel. Which says the locking nut adapter is usually kept in the boot with the spare and the jack. No key? Leave the nut alone. Our <a href="{{ route('services.show', 'locking-nut-removal') }}" class="font-semibold text-ink-950 underline decoration-brand-400 underline-offset-2">locking wheel nut removal</a> page explains what we can do, and we can fit the spare in the same visit.</p>
+        <p class="guide-copy">If your car has locking wheel nuts, you need the key to swap a wheel. Which says the locking nut adapter is usually kept in the boot with the spare and the jack. No key? Leave the nut alone. Our <a href="{{ route('services.locking') }}" class="font-semibold text-ink-950 underline decoration-brand-400 underline-offset-2">locking wheel nut removal</a> page explains what we can do, and we can fit the spare in the same visit.</p>
     </article>
 
     <article class="guide-card">

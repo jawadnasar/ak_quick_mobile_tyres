@@ -38,6 +38,18 @@ class ServiceHelper
                 'Mobile puncture repair in Crawley at your home, work or roadside. BS AU 159 repairs, price quoted first, 24/7. Call 07405 726167.',
                 schema: self::punctureSchemas($service['faq'] ?? [])
             );
+        } elseif ($slug === 'wheel-swaps-spares') {
+            $meta = MetaHelper::make(
+                'Spare Wheel Swap and Fitting Crawley | AK Quick Mobile Tyres',
+                'Spare wheel swap and fitting in Crawley at home or roadside. Space savers, full size spares, no spare help. 24/7, price first. Call 07405 726167.',
+                schema: self::wheelsSchemas($service['faq'] ?? [])
+            );
+        } elseif ($slug === 'locking-nut-removal') {
+            $meta = MetaHelper::make(
+                'Locking Wheel Nut Removal Crawley | AK Quick Mobile Tyres',
+                'Mobile locking wheel nut removal in Crawley. Lost key, broken or stripped nut? 24/7, price before we travel. Call 07405 726167.',
+                schema: self::lockingSchemas($service['faq'] ?? [])
+            );
         } else {
             $meta = MetaHelper::make(
                 $service['title'] . ' | ' . config('company.name'),
@@ -144,6 +156,136 @@ class ServiceHelper
                 'name' => 'Mobile Puncture Repair in Crawley',
                 'serviceType' => 'Mobile puncture repair',
                 'description' => 'Mobile puncture repair in Crawley, West Sussex, at your home, workplace or a safe roadside spot. Repairs follow BS AU 159. Open 24 hours, usual arrival 30 to 60 minutes.',
+                'url' => $page,
+                'provider' => [
+                    '@type' => 'TireShop',
+                    '@id' => 'https://www.akquickmobiletyres.co.uk/#business',
+                    'name' => 'AK Quick Mobile Tyres',
+                    'url' => 'https://www.akquickmobiletyres.co.uk/',
+                    'telephone' => '+447405726167',
+                    'areaServed' => [
+                        '@type' => 'City',
+                        'name' => 'Crawley',
+                    ],
+                    'openingHoursSpecification' => [
+                        [
+                            '@type' => 'OpeningHoursSpecification',
+                            'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                            'opens' => '00:00',
+                            'closes' => '23:59',
+                        ],
+                    ],
+                ],
+                'areaServed' => [
+                    ['@type' => 'City', 'name' => 'Crawley'],
+                    ['@type' => 'Place', 'name' => 'Three Bridges'],
+                    ['@type' => 'Place', 'name' => 'Pound Hill'],
+                    ['@type' => 'Place', 'name' => 'Maidenbower'],
+                    ['@type' => 'Place', 'name' => 'Tilgate'],
+                    ['@type' => 'Place', 'name' => 'Ifield'],
+                    ['@type' => 'Place', 'name' => 'Broadfield'],
+                    ['@type' => 'Place', 'name' => 'Manor Royal'],
+                ],
+                'availableChannel' => [
+                    '@type' => 'ServiceChannel',
+                    'servicePhone' => [
+                        '@type' => 'ContactPoint',
+                        'telephone' => '+447405726167',
+                        'contactType' => 'customer service',
+                    ],
+                    'serviceLocation' => [
+                        '@type' => 'Place',
+                        'name' => 'Customer location in Crawley',
+                    ],
+                ],
+            ],
+            $faqSchema,
+        ];
+    }
+
+    /**
+     * Locking-nut page schema only. Visible FAQs are the source for the FAQ block.
+     */
+    private static function lockingSchemas(array $faqs): array
+    {
+        $page = 'https://www.akquickmobiletyres.co.uk/locking-wheel-nut-removal-crawley/';
+
+        $faqSchema = MetaHelper::faqSchema($faqs);
+        $faqSchema['@id'] = $page.'#faq';
+
+        return [
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'Service',
+                '@id' => $page.'#service',
+                'name' => 'Mobile Locking Wheel Nut Removal in Crawley',
+                'serviceType' => 'Locking wheel nut removal',
+                'description' => 'Mobile locking wheel nut removal in Crawley, West Sussex, for lost, broken or stripped keys and damaged or stuck locking nuts. Open 24 hours, usual arrival 30 to 60 minutes.',
+                'url' => $page,
+                'provider' => [
+                    '@type' => 'TireShop',
+                    '@id' => 'https://www.akquickmobiletyres.co.uk/#business',
+                    'name' => 'AK Quick Mobile Tyres',
+                    'url' => 'https://www.akquickmobiletyres.co.uk/',
+                    'telephone' => '+447405726167',
+                    'areaServed' => [
+                        '@type' => 'City',
+                        'name' => 'Crawley',
+                    ],
+                    'openingHoursSpecification' => [
+                        [
+                            '@type' => 'OpeningHoursSpecification',
+                            'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                            'opens' => '00:00',
+                            'closes' => '23:59',
+                        ],
+                    ],
+                ],
+                'areaServed' => [
+                    ['@type' => 'City', 'name' => 'Crawley'],
+                    ['@type' => 'Place', 'name' => 'Three Bridges'],
+                    ['@type' => 'Place', 'name' => 'Pound Hill'],
+                    ['@type' => 'Place', 'name' => 'Maidenbower'],
+                    ['@type' => 'Place', 'name' => 'Tilgate'],
+                    ['@type' => 'Place', 'name' => 'Ifield'],
+                    ['@type' => 'Place', 'name' => 'Broadfield'],
+                    ['@type' => 'Place', 'name' => 'Manor Royal'],
+                ],
+                'availableChannel' => [
+                    '@type' => 'ServiceChannel',
+                    'servicePhone' => [
+                        '@type' => 'ContactPoint',
+                        'telephone' => '+447405726167',
+                        'contactType' => 'customer service',
+                    ],
+                    'serviceLocation' => [
+                        '@type' => 'Place',
+                        'name' => 'Customer location in Crawley',
+                    ],
+                ],
+            ],
+            $faqSchema,
+        ];
+    }
+
+    /**
+     * Spare-wheel page schema only. Visible FAQs are the source for the FAQ block.
+     */
+    private static function wheelsSchemas(array $faqs): array
+    {
+        $page = 'https://www.akquickmobiletyres.co.uk/spare-wheel-fitting-crawley/';
+
+        $faqSchema = MetaHelper::faqSchema($faqs);
+        $faqSchema['@id'] = $page.'#faq';
+
+        return [
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'Service',
+                '@id' => $page.'#service',
+                'name' => 'Mobile Spare Wheel Swap and Fitting in Crawley',
+                'serviceType' => 'Spare wheel swap and fitting',
+                'description' => 'Mobile spare wheel swap and fitting in Crawley, West Sussex, at your home, workplace or a safe roadside spot. Full size spares, space savers and full sets of wheels. Open 24 hours, usual arrival 30 to 60 minutes.',
                 'url' => $page,
                 'provider' => [
                     '@type' => 'TireShop',

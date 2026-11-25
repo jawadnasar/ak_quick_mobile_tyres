@@ -10,7 +10,8 @@
     $isPuncture = $service['slug'] === 'puncture-repairs';
     $isLocking = $service['slug'] === 'locking-nut-removal';
     $isWheels = $service['slug'] === 'wheel-swaps-spares';
-    $isLongform = $isEmergency || $isPuncture || $isLocking || $isWheels;
+    $isVans = $service['slug'] === 'vans-4x4s';
+    $isLongform = $isEmergency || $isPuncture || $isLocking || $isWheels || $isVans;
     $heroTitle = $service['title'];
     $longformPartial = 'services.partials.locking-nut-removal';
     if ($isEmergency) {
@@ -24,6 +25,9 @@
     } elseif ($isWheels) {
         $heroTitle = 'Spare Wheel Swap and Fitting in Crawley: We Change Your Wheel at Home or Roadside';
         $longformPartial = 'services.partials.wheel-swaps-spares';
+    } elseif ($isVans) {
+        $heroTitle = 'Mobile Van and 4x4 Tyre Fitting in Crawley: We Come to Your Work or Home';
+        $longformPartial = 'services.partials.vans-4x4s';
     }
 @endphp
 
@@ -61,6 +65,23 @@
         <div class="flex flex-col">
             <div class="order-2 sm:order-1">
                 <p class="text-[15px] font-normal leading-relaxed sm:text-base lg:text-lg">Flat tyre and a spare in the boot, but no wish to kneel on the kerb? {{ config('company.short_name') }} offers spare wheel swap and fitting in Crawley, West Sussex. Our mobile tyre technician comes to your home, your workplace or a safe roadside spot. We take off the flat wheel, fit your spare and tighten every nut to the right torque. If your car has no spare, we help with that too. You hear the full price before we set off.</p>
+            </div>
+            <a href="{{ $tel }}" class="btn-on-brand order-1 mb-5 w-full sm:order-2 sm:mb-0 sm:mt-6 sm:w-auto">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                Call {{ config('company.phone') }}
+            </a>
+        </div>
+    @elseif($isVans)
+        <div class="flex flex-col">
+            <div class="order-2 sm:order-1">
+                <p class="text-[15px] font-normal leading-relaxed sm:text-base lg:text-lg">A van on the road earns money. A van in a garage queue does not. {{ config('company.short_name') }} offers mobile van and 4x4 tyre fitting in Crawley, West Sussex. Our mobile tyre technician comes to your yard, your unit, your driveway or a safe roadside spot. We fit the right tyre for the load your vehicle carries and we tell you the full price before we set off. Call <a href="{{ $tel }}" class="whitespace-nowrap font-semibold text-white underline decoration-white/40 underline-offset-2">{{ config('company.phone') }}</a>.</p>
+                <ul class="mt-4 space-y-2 text-[15px] leading-relaxed sm:text-base lg:text-lg">
+                    <li>Van tyres for panel vans, crew vans and pickups</li>
+                    <li>4x4 and SUV tyres, from road tyres to all terrain tyres</li>
+                    <li>Single vehicles and small fleets</li>
+                    <li>Phone answered 24 hours a day, 7 days a week</li>
+                    <li>Full price confirmed before we travel</li>
+                </ul>
             </div>
             <a href="{{ $tel }}" class="btn-on-brand order-1 mb-5 w-full sm:order-2 sm:mb-0 sm:mt-6 sm:w-auto">
                 <i class="fa-solid fa-phone" aria-hidden="true"></i>
@@ -193,6 +214,17 @@
         @elseif($isWheels)
         <h2 class="font-display text-2xl font-bold tracking-tight text-white text-balance sm:text-3xl">Book spare wheel swap and fitting in Crawley</h2>
         <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">Call {{ config('company.phone') }}. We answer 24 hours a day, 7 days a week. Tell us your car, where you are and what has happened to the tyre. We give you a price and an arrival time before we travel.</p>
+        <a href="{{ $tel }}" class="btn-on-brand mt-6 w-full sm:w-auto">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            Call {{ config('company.phone') }}
+        </a>
+        <div class="mt-4 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <a href="{{ route('home') }}" class="btn-secondary-invert w-full sm:w-auto">AK Quick Mobile Tyres</a>
+            <a href="{{ route('contact') }}" class="btn-secondary-invert w-full sm:w-auto">Contact us</a>
+        </div>
+        @elseif($isVans)
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white text-balance sm:text-3xl">Book mobile van and 4x4 tyre fitting in Crawley</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-brand-50/90">Call {{ config('company.phone') }}. We answer 24 hours a day, 7 days a week. Tell us your vehicle, your tyre size and where you are. We give you a price and an arrival time before we travel.</p>
         <a href="{{ $tel }}" class="btn-on-brand mt-6 w-full sm:w-auto">
             <i class="fa-solid fa-phone" aria-hidden="true"></i>
             Call {{ config('company.phone') }}
