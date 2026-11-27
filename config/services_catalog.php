@@ -236,8 +236,14 @@ return [
             ['step' => 'Advise', 'description' => 'Guidance if further battery work is needed.'],
         ],
         'faq' => [
-            ['question' => 'Can you jumpstart my car at home or roadside?', 'answer' => 'Yes. We provide mobile jumpstart assistance wherever you are stranded, including at home, work or the roadside.'],
-            ['question' => 'What if the battery is completely dead?', 'answer' => 'We will attempt a safe jumpstart. If the battery will not hold charge, we can advise on battery recovery or replacement options.'],
+            ['question' => 'Can you jump start my car at home in Crawley?', 'answer' => 'Yes. We come to your driveway, your street or your workplace and jump start the car where it is parked. Call 07405 726167, tell us the car and where you are, and we give you the price and an arrival time before we travel.'],
+            ['question' => 'How long does a mobile jump start take?', 'answer' => 'The jump itself is usually quick, and our usual arrival time is 30 to 60 minutes. We confirm the time on the phone. If the car will not start after a few tries, we tell you what we think the fault is.'],
+            ['question' => 'How long should I drive after a jump start?', 'answer' => 'The RAC and Which both say to drive for at least 30 minutes, and Start Rescue says 30 to 45 minutes. Avoid heavy traffic if you can. A short trip may leave you unable to restart the car.'],
+            ['question' => 'Can you jump start a hybrid or electric car?', 'answer' => 'Many have a 12 volt battery that can be jump started, but the handbook rules apply. Which says Tesla advises calling its roadside assistance first. Give us your registration number when you call and we check what your car allows before we start.'],
+            ['question' => 'How much does a jump start cost in Crawley?', 'answer' => 'The price depends on where you are and what the car needs, so we give you the full price on the phone before we set off. You know the cost before we travel. For comparison, the RAC lists battery replacement from £160 with fitting.'],
+            ['question' => 'Can a wrong jump start damage my car?', 'answer' => 'Yes. The RAC says incorrect connections can damage the car, and it advises calling a breakdown service if you are unsure. A modern car has many computers, so the order of the clamps matters.'],
+            ['question' => 'Should I buy a jump starter or call a professional?', 'answer' => 'A rechargeable booster does not need a second car, says Kwik Fit. Which says to check it suits your engine size and a 12 volt battery. If the battery is old, a booster only delays the problem, so a test is worth doing.'],
+            ['question' => 'What if the jump start does not work?', 'answer' => 'Then the battery may be too worn to hold a charge, or the fault may be elsewhere, such as the starter or the charging system. We tell you whether it looks like a new battery or something else, and what we can do on site. We do not recommend work the car does not need.'],
         ],
     ],
     [
@@ -267,8 +273,14 @@ return [
             ['step' => 'Confirm', 'description' => 'Start test and leave you ready to drive.'],
         ],
         'faq' => [
-            ['question' => 'Do you supply and fit a new battery?', 'answer' => 'Where a replacement is needed, we can supply and fit a suitable battery at your location, subject to availability for your vehicle.'],
-            ['question' => 'Is this different from a jumpstart?', 'answer' => 'Yes. A jumpstart gets you going temporarily. Battery recovery focuses on testing and resolving a flat or failing battery properly.'],
+            ['question' => 'Is battery recovery different from a jump start?', 'answer' => 'Yes. A jump start is a temporary boost to get the engine running. Battery recovery tests the battery and the charging system, then recovers or replaces the battery so the car starts reliably. If the battery keeps going flat, recovery is the right service.'],
+            ['question' => 'Do you supply and fit a new battery?', 'answer' => 'Yes, where a new battery is needed, at your location in Crawley. It depends on availability for your vehicle. Give us your registration number when you call and we tell you what we can fit and what it costs.'],
+            ['question' => 'Can a dead battery be brought back?', 'answer' => 'Often it can, if it is only deeply discharged, says Optima Batteries. A worn out battery with sulphate build up may not hold a charge. We test it and tell you which one you have before you spend anything.'],
+            ['question' => 'How do you test a car battery?', 'answer' => 'We check the condition of the battery and the charging system on site. Kwik Fit says a rested, fully charged battery reads about 12.6 volts, and a running engine should show about 13.5 to 14.7 volts. A low reading helps us tell a tired battery from a charging fault.'],
+            ['question' => 'How long does a car battery last?', 'answer' => 'The RAC says batteries generally last between three and five years. Heat, cold, short trips and long gaps without use can shorten that. Kwik Fit advises regular checks once a battery is over three years old.'],
+            ['question' => 'How much does a new car battery cost?', 'answer' => 'For comparison, the RAC puts the average at £214, and its prices start at £160 with fitting. Our price depends on your vehicle, and you hear it on the phone first.'],
+            ['question' => 'Does a new battery need registering?', 'answer' => 'On some cars, yes. Midtronics says it mainly applies to makes such as BMW, Mini, Volkswagen and Audi, and that skipping it can cause charging problems. Tell us your make and model and we say what your car needs.'],
+            ['question' => 'What happens to my old battery?', 'answer' => 'Our service includes guidance on safe disposal. GOV.UK says retailers do not have to take back car batteries under the portable battery scheme, so ask us where yours should go.'],
         ],
     ],
 ];
